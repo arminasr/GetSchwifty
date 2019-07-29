@@ -17,6 +17,7 @@
 		C4D9C8B822EEF0B7002080DE /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D9C8B722EEF0B7002080DE /* Conference.swift */; };
 		C4D9C8BA22EEFBEA002080DE /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D9C8B922EEFBEA002080DE /* CategoryRow.swift */; };
 		C4D9C8BD22EF04A3002080DE /* conferencesData.json in Resources */ = {isa = PBXBuildFile; fileRef = C4D9C8BC22EF04A3002080DE /* conferencesData.json */; };
+		C4D9C8BF22EF1CA2002080DE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D9C8BE22EF1CA2002080DE /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		C4D9C8B722EEF0B7002080DE /* Conference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		C4D9C8B922EEFBEA002080DE /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		C4D9C8BC22EF04A3002080DE /* conferencesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conferencesData.json; sourceTree = "<group>"; };
+		C4D9C8BE22EF1CA2002080DE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				C4D9C89422EEEB94002080DE /* AppDelegate.swift */,
 				C4D9C89622EEEB94002080DE /* SceneDelegate.swift */,
 				C4D9C89822EEEB94002080DE /* HomeView.swift */,
+				C4D9C8BE22EF1CA2002080DE /* HeaderView.swift */,
 				C4D9C8B922EEFBEA002080DE /* CategoryRow.swift */,
 				C4D9C89A22EEEB96002080DE /* Assets.xcassets */,
 				C4D9C89F22EEEB96002080DE /* LaunchScreen.storyboard */,
@@ -234,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D9C8BF22EF1CA2002080DE /* HeaderView.swift in Sources */,
 				C4D9C89522EEEB94002080DE /* AppDelegate.swift in Sources */,
 				C4D9C89722EEEB94002080DE /* SceneDelegate.swift in Sources */,
 				C4D9C8BA22EEFBEA002080DE /* CategoryRow.swift in Sources */,

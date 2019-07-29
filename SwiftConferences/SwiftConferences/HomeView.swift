@@ -9,17 +9,20 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var selectedConference: Conference? = nil
     var conferences: [Conference] = [Conference(), Conference(), Conference(), Conference()]
     
     var body: some View {
-        NavigationView {
-            VStack {
-                CategoryRow(title: "Upcoming conferences", items: conferences)
-                CategoryRow(title: "I'm interested", items: conferences)
-            }
-            
+        
+        VStack {
+            HeaderView(conference: $selectedConference)
+            CategoryRow(title: "Upcoming conferences", items: conferences)
+            CategoryRow(title: "I'm interested", items: conferences)
         }
-        .navigationBarTitle(Text("Swift Conferences"))
+        .background(
+                Image("swift-background")
+                    .blur(radius: 30)
+        )
     }
 }
 

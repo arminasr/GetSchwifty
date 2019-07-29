@@ -23,6 +23,7 @@ struct CategoryRow: View {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(self.items, id: \.name) { conference in
                         CategoryItem(conference: conference)
+                            .padding()
                     }
                 }
             }
@@ -36,8 +37,12 @@ struct CategoryItem: View {
     var body: some View {
         VStack(alignment: .center) {
             Image(systemName: "photo")
-                .renderingMode(.original)
+                .resizable()
+                .frame(height: 120)
+                .aspectRatio(1, contentMode: .fit)
                 .clipShape(Circle())
+                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                .shadow(radius: 4)
             Text(conference.name)
                 .font(.headline)
             
