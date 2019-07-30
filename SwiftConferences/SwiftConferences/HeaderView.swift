@@ -13,15 +13,16 @@ struct HeaderView: View {
     
     var body: some View {
         guard let conference = self.conference else {
-            return HeaderImage()
+            return HeaderImage(image: Image("swift-background"))
         }
-        return HeaderImage()
+        return HeaderImage(image: Image("swift-background"))
     }
 }
 
 struct HeaderImage: View {
+    let image: Image
     var body: some View {
-        Image("swift-background")
+        image
             .resizable()
             .frame(height: 200)
             .aspectRatio(1, contentMode: .fit)

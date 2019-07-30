@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CategoryRow: View {
     var title: String
+    @Binding var selectedItem: Conference?
     var items: [Conference]
     
     var body: some View {
@@ -22,8 +23,13 @@ struct CategoryRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(self.items, id: \.name) { conference in
-                        CategoryItem(conference: conference)
-                            .padding()
+                        Button(action: {
+                            self.selectedItem = conference
+                        }) {
+                            CategoryItem(conference: conference)
+                                                        .padding()
+                        }
+                        
                     }
                 }
             }
@@ -55,7 +61,7 @@ struct CategoryItem: View {
 #if DEBUG
 struct CategoryRow_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryRow(title: "Upcoming conferences", items: [Conference(), Conference(), Conference()])
+        CategoryRow(title: "Upcoming conferences", selectedItem: .constant(nil), items: [Conference(), Conference(), Conference()])
     }
 }
 #endif

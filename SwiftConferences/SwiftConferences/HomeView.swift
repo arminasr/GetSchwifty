@@ -9,15 +9,18 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var selectedConference: Conference? = nil
+    @State var selectedConference: Conference? = nil
     var conferences: [Conference] = [Conference(), Conference(), Conference(), Conference()]
     
     var body: some View {
         
         VStack {
             HeaderView(conference: $selectedConference)
-            CategoryRow(title: "Upcoming conferences", items: conferences)
-            CategoryRow(title: "I'm interested", items: conferences)
+            VStack {
+                CategoryRow(title: "Upcoming conferences", selectedItem: $selectedConference, items: conferences)
+                            CategoryRow(title: "I'm interested", selectedItem: $selectedConference, items: conferences)
+            }
+            .blur(radius: selectedConference == nil ? 0 : 30)
         }
         .background(
                 Image("swift-background")
@@ -30,7 +33,7 @@ struct HomeView: View {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(selectedConference: nil)
     }
 }
 #endif
