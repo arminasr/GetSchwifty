@@ -23,12 +23,17 @@ struct CategoryRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(self.items, id: \.name) { conference in
-                        Button(action: {
+                        Button( action: {
+                            guard self.selectedItem == nil else {
+                                self.selectedItem = nil
+                                return
+                            }
                             self.selectedItem = conference
                         }) {
                             CategoryItem(conference: conference)
                                                         .padding()
                         }
+                        .accentColor(.black)
                         
                     }
                 }

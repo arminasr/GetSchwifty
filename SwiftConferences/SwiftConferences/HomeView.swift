@@ -16,11 +16,13 @@ struct HomeView: View {
         
         VStack {
             HeaderView(conference: $selectedConference)
-            VStack {
-                CategoryRow(title: "Upcoming conferences", selectedItem: $selectedConference, items: conferences)
-                            CategoryRow(title: "I'm interested", selectedItem: $selectedConference, items: conferences)
+            withAnimation {
+                VStack {
+                    CategoryRow(title: "Upcoming conferences", selectedItem: $selectedConference, items: conferences)
+                    CategoryRow(title: "I'm interested", selectedItem: $selectedConference, items: conferences)
+                }
+                .blur(radius: selectedConference == nil ? 0 : 30)
             }
-            .blur(radius: selectedConference == nil ? 0 : 30)
         }
         .background(
                 Image("swift-background")
