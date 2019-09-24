@@ -18,6 +18,7 @@ struct HomeView: View {
             HeaderView(conference: $selectedConference)
             withAnimation {
                 VStack {
+                    
                     CategoryRow(title: "Upcoming conferences", selectedItem: $selectedConference, items: conferences)
                     CategoryRow(title: "I'm interested", selectedItem: $selectedConference, items: conferences)
                 }
