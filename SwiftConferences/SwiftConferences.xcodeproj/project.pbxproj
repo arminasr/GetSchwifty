@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243616F233B20E600DC26FA /* ConferenceCard.swift */; };
 		4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */; };
 		4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */; };
 		4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC33233B1A7000F93FB3 /* HomeView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4243616F233B20E600DC26FA /* ConferenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCard.swift; sourceTree = "<group>"; };
 		4296EC2C233B1A7000F93FB3 /* SwiftConferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftConferences.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */,
 				4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */,
 				4296EC33233B1A7000F93FB3 /* HomeView.swift */,
+				4243616F233B20E600DC26FA /* ConferenceCard.swift */,
 				4296EC35233B1A7200F93FB3 /* Assets.xcassets */,
 				4296EC3A233B1A7200F93FB3 /* LaunchScreen.storyboard */,
 				4296EC3D233B1A7200F93FB3 /* Info.plist */,
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */,
+				42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */,
 				4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */,
 				4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */,
 			);

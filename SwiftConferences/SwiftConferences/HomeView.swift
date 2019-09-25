@@ -24,7 +24,7 @@ struct HomeView: View {
                 Spacer()
             }
             List {
-                Rectangle().cornerRadius(30)
+                ConferenceCard()
             }
         }
     }
