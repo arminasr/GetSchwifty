@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  SwiftConferences
 //
-//  Created by Arminas Ruzgas on 7/29/19.
-//  Copyright © 2019 Arminas Ruzgas. All rights reserved.
+//  Created by Arminas on 2019-09-25.
+//  Copyright © 2019 Arminas. All rights reserved.
 //
 
 import UIKit

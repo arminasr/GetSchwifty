@@ -1,42 +1,37 @@
 //
-//  HomeView.swift
+//  ContentView.swift
 //  SwiftConferences
 //
-//  Created by Arminas Ruzgas on 7/29/19.
-//  Copyright © 2019 Arminas Ruzgas. All rights reserved.
+//  Created by Arminas on 2019-09-25.
+//  Copyright © 2019 Arminas. All rights reserved.
 //
 
 import SwiftUI
 
 struct HomeView: View {
-    @State var selectedConference: Conference? = nil
-    var conferences: [Conference] = [Conference(), Conference(), Conference(), Conference()]
-    
-    var body: some View {
-        
+        var body: some View {
         VStack {
-            HeaderView(conference: $selectedConference)
-            withAnimation {
-                VStack {
-                    
-                    CategoryRow(title: "Upcoming conferences", selectedItem: $selectedConference, items: conferences)
-                    CategoryRow(title: "I'm interested", selectedItem: $selectedConference, items: conferences)
+            HStack{
+                Text("Swift Conferences").font(.largeTitle)
+                Spacer()
+                Button(action: {}) {
+                    Text("Favourites")
                 }
-                .blur(radius: selectedConference == nil ? 0 : 30)
+            }
+            HStack {
+                Text("Upcoming")
+                Text("Past")
+                Spacer()
+            }
+            List {
+                Rectangle().cornerRadius(30)
             }
         }
-        .background(
-                Image("swift-background")
-                    .blur(radius: 30)
-        )
     }
 }
 
-
-#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(selectedConference: nil)
+        HomeView()
     }
 }
-#endif

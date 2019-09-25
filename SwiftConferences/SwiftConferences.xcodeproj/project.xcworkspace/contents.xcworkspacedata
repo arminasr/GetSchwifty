@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SwiftConferences.xcodeproj">
+      location = "self:/Users/arminas/source/SwiftConferences/iOSConferences/SwiftConferences.xcodeproj">
    </FileRef>
 </Workspace>

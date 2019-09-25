@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  SwiftConferences
 //
-//  Created by Arminas Ruzgas on 7/29/19.
-//  Copyright © 2019 Arminas Ruzgas. All rights reserved.
+//  Created by Arminas on 2019-09-25.
+//  Copyright © 2019 Arminas. All rights reserved.
 //
 
 import UIKit
@@ -19,10 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
-        // Use a UIHostingController as window root view controller
+        // Create the SwiftUI view that provides the window contents.
+        let contentView = HomeView()
+
+        // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: HomeView())
+            window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
         }
