@@ -10,23 +10,36 @@ import SwiftUI
 
 struct HomeView: View {
         var body: some View {
-        VStack {
-            HStack{
-                Text("Swift Conferences").font(.largeTitle)
-                Spacer()
-                Button(action: {}) {
-                    Text("Favourites")
+            NavigationView {
+                VStack {
+                    HStack {
+                        Button(action: {
+                            print("Upcoming tapped")
+                        }) {
+                            Text("Upcoming")
+                        }
+                        Button(action: {
+                            print("Past tapped")
+                        }) {
+                            Text("Past")
+                        }
+                        Spacer()
+                        Button(action: {
+                            print("Favourites")
+                        }) {
+                            Image(systemName: "star.fill")
+                        }
+                    }
+                    .padding()
+                    .font(.headline)
+                    .accentColor(Color("Electric"))
+                    List {
+                        ConferenceCard()
+                    }
                 }
+                .navigationBarTitle("Swift Conferences",
+                                    displayMode: .large)
             }
-            HStack {
-                Text("Upcoming")
-                Text("Past")
-                Spacer()
-            }
-            List {
-                ConferenceCard()
-            }
-        }
     }
 }
 
