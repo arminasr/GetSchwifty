@@ -34,7 +34,18 @@ struct HomeView: View {
                     .font(.headline)
                     .accentColor(Color("Electric"))
                     List {
-                        ConferenceCard()
+                        Section(header: Text("Upcoming")) {
+                            ConferenceCard()
+                        }
+                        .onAppear() {
+                            print("Upcoming appeared")
+                        }
+                        Section(header: Text("Past")) {
+                            ConferenceCard()
+                        }
+                        .onAppear() {
+                            print("Past appeared")
+                        }
                     }
                 }
                 .navigationBarTitle("Swift Conferences",
