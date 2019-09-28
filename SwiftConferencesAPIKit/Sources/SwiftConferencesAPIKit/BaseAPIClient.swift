@@ -10,6 +10,10 @@ import Combine
 
 @available(iOS 13.0, *)
 public class BaseAPIClient: APIClient {
+    public init() {
+
+    }
+    
     public func get(url: URL) -> URLSession.DataTaskPublisher {
         URLSession.shared.dataTaskPublisher(for: url)
     }

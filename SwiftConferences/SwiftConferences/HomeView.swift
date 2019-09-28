@@ -38,7 +38,6 @@ struct HomeView: View {
                             ConferenceCard()
                         }
                         .onAppear() {
-                            print("Upcoming appeared")
                         }
                         Section(header: Text("Past")) {
                             ConferenceCard()

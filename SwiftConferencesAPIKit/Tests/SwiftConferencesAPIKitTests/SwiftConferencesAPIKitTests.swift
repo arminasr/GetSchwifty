@@ -6,7 +6,7 @@ final class SwiftConferencesAPIKitTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(SwiftConferencesAPIKit().text, "Hello, World!")
+        XCTAssertEqual(SwiftConferencesAPIKit.text, "Hello, World!")
     }
 
     static var allTests = [
