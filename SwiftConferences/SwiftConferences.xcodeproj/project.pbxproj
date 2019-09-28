@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243616F233B20E600DC26FA /* ConferenceCard.swift */; };
+		427E4ADD233F4A0A00732BB2 /* ConferencesNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4ADC233F4A0A00732BB2 /* ConferencesNavigationBar.swift */; };
+		427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */; };
+		427E4AE2233F4C9C00732BB2 /* SwiftConferencesAPIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 427E4AE1233F4C9C00732BB2 /* SwiftConferencesAPIKit */; };
+		427E4AE9233F50CF00732BB2 /* SwiftConferencesDataKit in Frameworks */ = {isa = PBXBuildFile; productRef = 427E4AE8233F50CF00732BB2 /* SwiftConferencesDataKit */; };
 		4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */; };
 		4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */; };
 		4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC33233B1A7000F93FB3 /* HomeView.swift */; };
@@ -30,6 +34,9 @@
 /* Begin PBXFileReference section */
 		4243616F233B20E600DC26FA /* ConferenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCard.swift; sourceTree = "<group>"; };
 		42436175233DBDB200DC26FA /* SwiftConferencesAPIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftConferencesAPIKit; path = ../SwiftConferencesAPIKit; sourceTree = "<group>"; };
+		427E4ADC233F4A0A00732BB2 /* ConferencesNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesNavigationBar.swift; sourceTree = "<group>"; };
+		427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesList.swift; sourceTree = "<group>"; };
+		427E4AE7233F50C100732BB2 /* SwiftConferencesDataKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftConferencesDataKit; path = ../SwiftConferencesDataKit; sourceTree = "<group>"; };
 		4296EC2C233B1A7000F93FB3 /* SwiftConferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftConferences.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427E4AE2233F4C9C00732BB2 /* SwiftConferencesAPIKit in Frameworks */,
+				427E4AE9233F50CF00732BB2 /* SwiftConferencesDataKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,13 +70,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		427E4AE0233F4C9C00732BB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4296EC23233B1A7000F93FB3 = {
 			isa = PBXGroup;
 			children = (
+				427E4AE7233F50C100732BB2 /* SwiftConferencesDataKit */,
 				42436175233DBDB200DC26FA /* SwiftConferencesAPIKit */,
 				4296EC2E233B1A7000F93FB3 /* SwiftConferences */,
 				4296EC45233B1A7200F93FB3 /* SwiftConferencesTests */,
 				4296EC2D233B1A7000F93FB3 /* Products */,
+				427E4AE0233F4C9C00732BB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +104,8 @@
 				4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */,
 				4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */,
 				4296EC33233B1A7000F93FB3 /* HomeView.swift */,
+				427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */,
+				427E4ADC233F4A0A00732BB2 /* ConferencesNavigationBar.swift */,
 				4243616F233B20E600DC26FA /* ConferenceCard.swift */,
 				4296EC35233B1A7200F93FB3 /* Assets.xcassets */,
 				4296EC3A233B1A7200F93FB3 /* LaunchScreen.storyboard */,
@@ -128,6 +148,10 @@
 			dependencies = (
 			);
 			name = SwiftConferences;
+			packageProductDependencies = (
+				427E4AE1233F4C9C00732BB2 /* SwiftConferencesAPIKit */,
+				427E4AE8233F50CF00732BB2 /* SwiftConferencesDataKit */,
+			);
 			productName = iOSConferences;
 			productReference = 4296EC2C233B1A7000F93FB3 /* SwiftConferences.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +241,8 @@
 				42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */,
 				4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */,
 				4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */,
+				427E4ADD233F4A0A00732BB2 /* ConferencesNavigationBar.swift in Sources */,
+				427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +505,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		427E4AE1233F4C9C00732BB2 /* SwiftConferencesAPIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftConferencesAPIKit;
+		};
+		427E4AE8233F50CF00732BB2 /* SwiftConferencesDataKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftConferencesDataKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4296EC24233B1A7000F93FB3 /* Project object */;
 }

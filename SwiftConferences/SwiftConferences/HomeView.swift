@@ -12,40 +12,8 @@ struct HomeView: View {
         var body: some View {
             NavigationView {
                 VStack {
-                    HStack {
-                        Button(action: {
-                            print("Upcoming tapped")
-                        }) {
-                            Text("Upcoming")
-                        }
-                        Button(action: {
-                            print("Past tapped")
-                        }) {
-                            Text("Past")
-                        }
-                        Spacer()
-                        Button(action: {
-                            print("Favourites")
-                        }) {
-                            Image(systemName: "star.fill")
-                        }
-                    }
-                    .padding()
-                    .font(.headline)
-                    .accentColor(Color("Electric"))
-                    List {
-                        Section(header: Text("Upcoming")) {
-                            ConferenceCard()
-                        }
-                        .onAppear() {
-                        }
-                        Section(header: Text("Past")) {
-                            ConferenceCard()
-                        }
-                        .onAppear() {
-                            print("Past appeared")
-                        }
-                    }
+                    ConferencesNavigationBar()
+                    ConferencesList()
                 }
                 .navigationBarTitle("Swift Conferences",
                                     displayMode: .large)

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SwiftConferencesDataKit
+import SwiftConferencesAPIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let apiClient = BaseAPIClient()
+        let dataStorage = APISwiftConferencesDataStore(apiClient: apiClient)
+        let result = dataStorage.getConferences(from: URL(string: "https://google.lt")!)
+        print(result)
         return true
     }
 
