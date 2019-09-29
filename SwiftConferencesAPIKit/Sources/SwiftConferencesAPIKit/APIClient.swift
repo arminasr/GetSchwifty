@@ -11,13 +11,13 @@ import Combine
 
 public enum SwiftConferencesAPIError: Error, LocalizedError {
     case responseError(Int)
-    case urlError(URLError)
+    case error(String)
     case genericError
     
     var localizedDescription: String {
         switch self {
-        case .urlError(let error):
-            return error.localizedDescription
+        case .error(let error):
+            return error
         case .responseError(let status):
             return "Bad response code: \(status)"
         case .genericError:
@@ -29,5 +29,5 @@ public enum SwiftConferencesAPIError: Error, LocalizedError {
 
 @available(iOS 13.0, *)
 public protocol APIClient {
-    func get(url: URL) -> Future<Data, SwiftConferencesAPIError>
+    func getData(atURL url: URL) -> Future<Data, SwiftConferencesAPIError>
 }

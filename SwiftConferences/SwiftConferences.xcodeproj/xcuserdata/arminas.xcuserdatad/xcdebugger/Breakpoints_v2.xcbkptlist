@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7B76571A-A846-4278-AAC1-F19D8CF5832B"
+            uuid = "FB80F126-43E0-423F-B991-0413809DC891"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftConferences/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,96 +23,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B854404F-249F-46E3-BE5B-6B345502866E"
+            uuid = "689A4B34-7DD2-4E5E-A613-4EAAE58F4A10"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
+            filePath = "SwiftConferences/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "getConferences(from:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B854404F-249F-46E3-BE5B-6B345502866E - 1ca512593baaca0b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftConferencesDataKit.APISwiftConferencesDataStore.getConferences(from: Foundation.URL) -&gt; Combine.Future&lt;Swift.Array&lt;SwiftConferencesDataKit.SwiftConference&gt;, SwiftConferencesDataKit.RemoteSwiftConferencesDataStoreError&gt;"
-                  moduleName = "SwiftConferences"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arminas/source/SwiftConferences/SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "45">
-               </Location>
-               <Location
-                  uuid = "B854404F-249F-46E3-BE5B-6B345502866E - 60824b4df5ab76ff"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((Swift.Result&lt;Swift.Array&lt;SwiftConferencesDataKit.SwiftConference&gt;, SwiftConferencesDataKit.RemoteSwiftConferencesDataStoreError&gt;) -&gt; ()) -&gt; () in SwiftConferencesDataKit.APISwiftConferencesDataStore.getConferences(from: Foundation.URL) -&gt; Combine.Future&lt;Swift.Array&lt;SwiftConferencesDataKit.SwiftConference&gt;, SwiftConferencesDataKit.RemoteSwiftConferencesDataStoreError&gt;"
-                  moduleName = "SwiftConferences"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arminas/source/SwiftConferences/SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "60">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AAFDBB62-B57E-44D3-A46C-626D0333DABE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "getConferences(from:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "29EAA0C9-DB8B-41EA-8F83-CEA91E4024C1"
+            uuid = "AE1829DE-3B09-4DFF-BF34-36F7CB38B9BD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
+            filePath = "SwiftConferences/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "getConferences(from:)"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2E4BCFCC-95E7-4985-98C9-F4DBC3CB3B6C"
+            uuid = "F8CD1322-645C-43CA-A561-8A7236C621C9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "getConferences(from:)"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "getEntity(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25CFE355-CDDF-43AD-AC5A-2B1501F7A9D5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/Conferences/Remote/APISwiftConferencesDataStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getSwiftConferences()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
