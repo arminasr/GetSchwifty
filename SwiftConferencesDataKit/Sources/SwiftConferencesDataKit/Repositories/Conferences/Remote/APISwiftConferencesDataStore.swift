@@ -8,6 +8,7 @@
 import Foundation
 import SwiftConferencesAPIKit
 import Combine
+import Yams
 
 @available(iOS 13.0, *)
 public class APISwiftConferencesDataStore: RemoteSwiftConferencesDataStore {
@@ -22,7 +23,10 @@ public class APISwiftConferencesDataStore: RemoteSwiftConferencesDataStore {
     
     public func getSwiftConferences() -> AnyPublisher<[SwiftConference], RemoteSwiftConferencesDataStoreError> {
         return getEntity(.SwiftConference)
-            .decode(type: [SwiftConference].self, decoder: JSONDecoder())
+            .map {
+                String(decoding: $0, as: UTF8.self)
+            }
+            .decode(type: [SwiftConference].self, decoder: YAMLDecoder())
             .catch {
                 Fail(error: .decodingError($0))
             }

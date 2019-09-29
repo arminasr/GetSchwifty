@@ -8,15 +8,15 @@
 import Foundation
 
 public struct SwiftConference: Codable {
-    let name: String
-    let startDate: Date
-    let endDate: Date
-    let location: String
-    let link: URL?
-    let cfp: CFP?
+    public let name: String
+    public let start: Date?
+    public let end: Date?
+    public let location: String?
+    public let link: URL?
+    public let cfp: CFP?
 }
 
 public struct CFP: Codable {
-    let link: URL?
-    let deadline: Date?
+    public let link: URL?
+    public let deadline: Date?
 }

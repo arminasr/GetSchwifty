@@ -9,29 +9,16 @@
 import UIKit
 import SwiftConferencesDataKit
 import SwiftConferencesAPIKit
+import Combine
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    private var cancellable: AnyCancellable?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let apiClient = BaseAPIClient()
-        let dataStorage = APISwiftConferencesDataStore(apiClient: apiClient, baseURLString: "https://github.com/Lascorbe/CocoaConferences/blob/master/_data")
-        let conferences = dataStorage.getSwiftConferences().sink(receiveCompletion: { error in
-            DispatchQueue.main.async {
-                print(error.self)
-            }
-        }, receiveValue: { conferences in
-            DispatchQueue.main.async {
-                print(conferences)
-            }
-        })
-        
-        print(conferences)
-
         return true
     }
 
