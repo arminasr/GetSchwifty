@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import Combine
+import SwiftConferencesDataKit
+
+class HomeViewModel: ObservableObject {
+    @Published var dataSource: ConferenceCardViewModel?
+    
+    private let conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore
+    private var disposables = Set<AnyCancellable>()
+
+    init(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) {
+      self.conferencesDataStore = conferencesDataStore
+    }
+    
+    func refresh() {
+        
+    }
+}
