@@ -19,4 +19,16 @@ public struct SwiftConference: Codable {
 public struct CFP: Codable {
     public let link: URL?
     public let deadline: Date?
+    
+    public var containsLinkAndDeadline: Bool {
+        containsLink && containsDeadline
+    }
+    
+    public var containsLink: Bool {
+        link != nil
+    }
+    
+    public var containsDeadline: Bool {
+        deadline != nil
+    }
 }
