@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ConferencesNavigationBar: View {
+    
+    
     var body: some View {
         HStack {
             Button(action: {

@@ -9,20 +9,27 @@
 import SwiftUI
 
 struct HomeView: View {
-        var body: some View {
-            NavigationView {
-                VStack {
-                    ConferencesNavigationBar()
-                    ConferencesList()
-                }
-                .navigationBarTitle("Swift Conferences",
-                                    displayMode: .large)
-            }
-    }
-}
+    
+    @ObservedObject var viewModel: HomeViewModel
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                ConferencesNavigationBar()
+                ConferencesList()
+            }
+            .navigationBarTitle("\(viewModel.navigationBarTitle)",
+                                displayMode: .large)
+        }
     }
 }
+//
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}

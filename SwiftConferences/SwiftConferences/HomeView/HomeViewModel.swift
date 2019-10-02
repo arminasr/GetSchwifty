@@ -9,18 +9,50 @@
 import Foundation
 import Combine
 import SwiftConferencesDataKit
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var dataSource: ConferenceCardViewModel?
+    
+    enum Mode {
+        case all
+        case favourite
+    }
     
     private let conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore
     private var disposables = Set<AnyCancellable>()
 
     init(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) {
-      self.conferencesDataStore = conferencesDataStore
+        self.conferencesDataStore = conferencesDataStore
+        fetchConferences()
     }
     
-    func refresh() {
-        
+    @Published var dataSource: [SwiftConference] = [] {
+        didSet {
+            print(_dataSource)
+        }
+    }
+    @Published var navigationBarTitle = "Swift Conferences"
+    @Published var mode: Mode = .all
+    
+
+    
+    func fetchConferences() {
+        conferencesDataStore.getSwiftConferences()
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] value in
+                    guard let self = self else { return }
+                    switch value {
+                    case .failure:
+                        self.dataSource = []
+                    case .finished:
+                        break
+                    }
+                },
+                receiveValue: { [weak self] conferences in
+                    guard let self = self else { return }
+                    self.dataSource = conferences
+            })
+            .store(in: &disposables)
     }
 }

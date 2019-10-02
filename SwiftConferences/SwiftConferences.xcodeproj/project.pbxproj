@@ -15,6 +15,8 @@
 		427E4AED234300D700732BB2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AEC234300D700732BB2 /* HomeViewModel.swift */; };
 		427E4AEF234301E200732BB2 /* ConferenceCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AEE234301E200732BB2 /* ConferenceCardViewModel.swift */; };
 		427E4AF2234303EA00732BB2 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AF1234303EA00732BB2 /* Formatters.swift */; };
+		427E4AF42344545600732BB2 /* HomeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AF32344545600732BB2 /* HomeViewFactory.swift */; };
+		427E4AF723445A3300732BB2 /* ConferencesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */; };
 		4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */; };
 		4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */; };
 		4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC33233B1A7000F93FB3 /* HomeView.swift */; };
@@ -43,6 +45,8 @@
 		427E4AEC234300D700732BB2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		427E4AEE234301E200732BB2 /* ConferenceCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCardViewModel.swift; sourceTree = "<group>"; };
 		427E4AF1234303EA00732BB2 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		427E4AF32344545600732BB2 /* HomeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewFactory.swift; sourceTree = "<group>"; };
+		427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesListViewModel.swift; sourceTree = "<group>"; };
 		4296EC2C233B1A7000F93FB3 /* SwiftConferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftConferences.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,10 +92,12 @@
 			children = (
 				4296EC33233B1A7000F93FB3 /* HomeView.swift */,
 				427E4AEC234300D700732BB2 /* HomeViewModel.swift */,
+				427E4AF32344545600732BB2 /* HomeViewFactory.swift */,
+				427E4ADC233F4A0A00732BB2 /* ConferencesNavigationBar.swift */,
+				427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */,
+				427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */,
 				4243616F233B20E600DC26FA /* ConferenceCard.swift */,
 				427E4AEE234301E200732BB2 /* ConferenceCardViewModel.swift */,
-				427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */,
-				427E4ADC233F4A0A00732BB2 /* ConferencesNavigationBar.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -263,11 +269,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */,
+				427E4AF723445A3300732BB2 /* ConferencesListViewModel.swift in Sources */,
 				42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */,
 				427E4AED234300D700732BB2 /* HomeViewModel.swift in Sources */,
 				427E4AF2234303EA00732BB2 /* Formatters.swift in Sources */,
 				4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */,
 				4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */,
+				427E4AF42344545600732BB2 /* HomeViewFactory.swift in Sources */,
 				427E4ADD233F4A0A00732BB2 /* ConferencesNavigationBar.swift in Sources */,
 				427E4AEF234301E200732BB2 /* ConferenceCardViewModel.swift in Sources */,
 				427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */,
