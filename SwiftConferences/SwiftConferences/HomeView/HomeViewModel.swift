@@ -26,15 +26,13 @@ class HomeViewModel: ObservableObject {
         fetchConferences()
     }
     
-    @Published var dataSource: [SwiftConference] = [] {
-        didSet {
-            print(_dataSource)
-        }
-    }
     @Published var navigationBarTitle = "Swift Conferences"
-    @Published var mode: Mode = .all
+    @State private var dataSource: [SwiftConference] = []
+    @Published private var mode: Mode = .all
     
-
+    var conferencesListViewModel: ConferencesListViewModel {
+        ConferencesListViewModel(conferences: dataSource)
+    }
     
     func fetchConferences() {
         conferencesDataStore.getSwiftConferences()

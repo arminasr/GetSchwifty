@@ -20,7 +20,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 ConferencesNavigationBar()
-                ConferencesList()
+                ConferencesList(viewModel: viewModel.conferencesListViewModel)
             }
             .navigationBarTitle("\(viewModel.navigationBarTitle)",
                                 displayMode: .large)
