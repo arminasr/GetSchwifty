@@ -9,29 +9,19 @@
 import Foundation
 import Combine
 import SwiftConferencesDataKit
-import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
-    enum Mode {
-        case all
-        case favourite
-    }
-    
+    @Published var viewModelDTO = HomeViewModelDTO()
+
     private let conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore
     private var disposables = Set<AnyCancellable>()
+    @Published private var dataSource: [SwiftConference] = []
+    
 
     init(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) {
         self.conferencesDataStore = conferencesDataStore
         fetchConferences()
-    }
-    
-    @Published var navigationBarTitle = "Swift Conferences"
-    @State private var dataSource: [SwiftConference] = []
-    @Published private var mode: Mode = .all
-    
-    var conferencesListViewModel: ConferencesListViewModel {
-        ConferencesListViewModel(conferences: dataSource)
     }
     
     func fetchConferences() {
@@ -52,5 +42,18 @@ class HomeViewModel: ObservableObject {
                     self.dataSource = conferences
             })
             .store(in: &disposables)
+    }
+}
+
+extension HomeViewModel {
+    class HomeViewModelDTO: ObservableObject {
+        @Published var navigationBarTitle: String = "Swift Conferences"
+        //@Published var navigationBarViewModel: NavigationBarViewModel
+        @Published var conferencesListViewModel = ConferencesListViewModel(conferences: [])
+    }
+    
+    enum Mode {
+        case favourite
+        case all
     }
 }

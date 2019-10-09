@@ -12,6 +12,6 @@ import SwiftConferencesDataKit
 enum HomeViewFactory {
     static func makeHomeView(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) -> some View {
         let viewModel = HomeViewModel(conferencesDataStore: conferencesDataStore)
-        return HomeView(viewModel: viewModel)
+        return HomeView(viewModel: viewModel.viewModelDTO)
     }
 }

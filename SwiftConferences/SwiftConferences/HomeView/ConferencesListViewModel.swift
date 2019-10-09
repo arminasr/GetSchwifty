@@ -12,17 +12,17 @@ import SwiftUI
 import Combine
 
 class ConferencesListViewModel: ObservableObject {
-    struct Section: Identifiable {
-        var id: ObjectIdentifier
-
-        let sectionName: String
-        let cards: [ConferenceCardViewModel]
-    }
     
     @Published var dataSource: [ConferencesListViewModel.Section] = []
     
+    private var conferences: [SwiftConference] {
+        didSet {
+            dataSource = mapToSections(conferences: conferences)
+        }
+    }
+    
     init(conferences: [SwiftConference]) {
-        dataSource = mapToSections(conferences: conferences)
+        self.conferences = conferences
     }
     
     func mapToSections(conferences: [SwiftConference]) -> [Section] {
@@ -30,35 +30,48 @@ class ConferencesListViewModel: ObservableObject {
     }
     
     private func getUpcommingConferencesSection(from conferences: [SwiftConference]) -> Section {
-        return Section(sectionName: "Upcomming",
-                       cards: conferences
-                        .filter {
-                            guard let endDate = $0.end else {
-                                guard let startDate = $0.start else {
-                                    //TBA
-                                    return true
-                                }
-                                return startDate < Date() ? true : false
-                            }
-                            return endDate < Date() ? true : false
-                       }
-                       .map(ConferenceCardViewModel.init))
+        let section = Section()
+        section.sectionName = "Past"
+        section.cards = conferences
+            .filter {
+                guard let endDate = $0.end else {
+                    guard let startDate = $0.start else {
+                        //TBA
+                        return true
+                    }
+                    return startDate < Date() ? true : false
+                }
+                return endDate < Date() ? true : false
+            }
+            .map(ConferenceCardViewModel.init)
+
+        return section
     }
-    
+
     private func getPastConferencesSection(from conferences: [SwiftConference]) -> Section {
-        return Section(sectionName: "Past",
-                       cards: conferences
-                        .filter {
-                            guard let endDate = $0.end else {
-                                guard let startDate = $0.start else {
-                                    //TBA
-                                    return false
-                                }
-                                return startDate < Date() ? false : true
-                            }
-                            return endDate < Date() ? false : true
-                       }
-                       .map(ConferenceCardViewModel.init))
+        let section = Section()
+        section.sectionName = "Past"
+        section.cards = conferences
+            .filter {
+                guard let endDate = $0.end else {
+                    guard let startDate = $0.start else {
+                        //TBA
+                        return false
+                    }
+                    return startDate < Date() ? false : true
+                }
+                return endDate < Date() ? false : true
+            }
+            .map(ConferenceCardViewModel.init)
+        return section
+    }
+}
+
+extension ConferencesListViewModel {
+    class Section: ObservableObject, Identifiable {
+        let id = UUID()
+        var sectionName: String = ""
+        var cards: [ConferenceCardViewModel] = []
     }
 }
 

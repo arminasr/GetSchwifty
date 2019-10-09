@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 public struct SwiftConference: Codable {
     public let name: String
