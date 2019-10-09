@@ -10,9 +10,9 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel: HomeViewModel.HomeViewModelDTO
+    @ObservedObject var viewModel: HomeViewModel
 
-    init(viewModel: HomeViewModel.HomeViewModelDTO) {
+    init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
     }
     
@@ -20,9 +20,9 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 ConferencesNavigationBar()
-                //ConferencesList(viewModel: viewModel.conferencesListViewModel)
+                ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
             }
-            .navigationBarTitle("\(viewModel.navigationBarTitle)",
+            .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)",
                                 displayMode: .large)
         }
     }

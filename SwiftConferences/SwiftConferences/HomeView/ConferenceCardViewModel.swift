@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 import SwiftConferencesDataKit
 
-struct ConferenceCardViewModel {
+struct ConferenceCardViewModel: Identifiable {
     
     struct ActionButtonModel {
         let icon: Image
@@ -19,6 +19,7 @@ struct ConferenceCardViewModel {
         var link: URL? = nil
     }
     
+    let id = UUID()
     private let swiftConference: SwiftConference
     
     init(swiftConference: SwiftConference) {

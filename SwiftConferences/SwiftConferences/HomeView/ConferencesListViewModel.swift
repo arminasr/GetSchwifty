@@ -8,30 +8,42 @@
 
 import Foundation
 import SwiftConferencesDataKit
-import SwiftUI
 import Combine
 
 class ConferencesListViewModel: ObservableObject {
     
     @Published var dataSource: [ConferencesListViewModel.Section] = []
-    
-    private var conferences: [SwiftConference] {
+    @Published var conferences: [SwiftConference] = [] {
         didSet {
             dataSource = mapToSections(conferences: conferences)
         }
     }
     
-    init(conferences: [SwiftConference]) {
-        self.conferences = conferences
-    }
-    
-    func mapToSections(conferences: [SwiftConference]) -> [Section] {
+    private func mapToSections(conferences: [SwiftConference]) -> [Section] {
         return [getUpcommingConferencesSection(from: conferences), getPastConferencesSection(from: conferences)]
     }
-    
+
     private func getUpcommingConferencesSection(from conferences: [SwiftConference]) -> Section {
         let section = Section()
-        section.sectionName = "Past"
+        section.sectionName = "Upcomming conferences"
+        section.cards = conferences
+            .filter {
+                guard let endDate = $0.end else {
+                    guard let startDate = $0.start else {
+                        //TBA
+                        return false
+                    }
+                    return startDate < Date() ? false : true
+                }
+                return endDate < Date() ? false : true
+            }
+            .map(ConferenceCardViewModel.init)
+        return section
+    }
+    
+    private func getPastConferencesSection(from conferences: [SwiftConference]) -> Section {
+        let section = Section()
+        section.sectionName = "Past conferences"
         section.cards = conferences
             .filter {
                 guard let endDate = $0.end else {
@@ -45,24 +57,6 @@ class ConferencesListViewModel: ObservableObject {
             }
             .map(ConferenceCardViewModel.init)
 
-        return section
-    }
-
-    private func getPastConferencesSection(from conferences: [SwiftConference]) -> Section {
-        let section = Section()
-        section.sectionName = "Past"
-        section.cards = conferences
-            .filter {
-                guard let endDate = $0.end else {
-                    guard let startDate = $0.start else {
-                        //TBA
-                        return false
-                    }
-                    return startDate < Date() ? false : true
-                }
-                return endDate < Date() ? false : true
-            }
-            .map(ConferenceCardViewModel.init)
         return section
     }
 }

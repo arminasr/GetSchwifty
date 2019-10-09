@@ -9,37 +9,49 @@
 import SwiftUI
 
 struct ConferenceCard: View {
+    
+    @State var cardViewModel: ConferenceCardViewModel
+    
     var body: some View {
         VStack {
-            Text("Swift Alps").font(.largeTitle).colorInvert()
-            Text("November 28–29, 2019").font(.subheadline).colorInvert()
-            Text("🇨🇭 Crans-Montana, Switzerland").font(.caption).colorInvert()
+            HStack() {
+                Text("\(cardViewModel.conferenceName)").font(.largeTitle).colorInvert().lineLimit(nil)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+            
+            HStack {
+                Text("\(cardViewModel.conferenceDate)").font(.subheadline).colorInvert()
+                Spacer()
+            }
+            HStack {
+                Text("\(cardViewModel.location)").font(.caption).colorInvert()
+                Spacer()
+            }
             HStack {
                 Button(action: {
                     print("Favourites")
                 }) {
                     Image(systemName: "globe").foregroundColor(Color("Electric"))
                 }
+                .padding()
                 Button(action: {
                     print("Favourites")
                 }) {
                     Image(systemName: "star").foregroundColor(Color("Electric"))
                 }
+                .padding()
                 Button(action: {
                     print("Favourites")
                 }) {
                     Image(systemName: "pencil.circle").foregroundColor(Color("Electric"))
                 }
+                .padding()
             }
         }
+        .padding()
         .background(Color("CardBackgroungColor"))
         
         .cornerRadius(30)
-    }
-}
-
-struct ConferenceCard_Previews: PreviewProvider {
-    static var previews: some View {
-        ConferenceCard()
     }
 }

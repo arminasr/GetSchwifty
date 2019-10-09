@@ -13,11 +13,14 @@ import SwiftConferencesDataKit
 class HomeViewModel: ObservableObject {
     
     @Published var viewModelDTO = HomeViewModelDTO()
-
+    @Published private var swiftConferences: [SwiftConference] = [] {
+        didSet {
+            viewModelDTO.swiftConferences = swiftConferences
+        }
+    }
+    
     private let conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore
     private var disposables = Set<AnyCancellable>()
-    @Published private var dataSource: [SwiftConference] = []
-    
 
     init(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) {
         self.conferencesDataStore = conferencesDataStore
@@ -32,14 +35,14 @@ class HomeViewModel: ObservableObject {
                     guard let self = self else { return }
                     switch value {
                     case .failure:
-                        self.dataSource = []
+                        self.swiftConferences = []
                     case .finished:
                         break
                     }
                 },
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
-                    self.dataSource = conferences
+                    self.swiftConferences = conferences
             })
             .store(in: &disposables)
     }
@@ -47,9 +50,14 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
+        @Published var swiftConferences: [SwiftConference] = [] {
+            didSet {
+                conferencesListViewModel.conferences = swiftConferences
+            }
+        }
         @Published var navigationBarTitle: String = "Swift Conferences"
         //@Published var navigationBarViewModel: NavigationBarViewModel
-        @Published var conferencesListViewModel = ConferencesListViewModel(conferences: [])
+        @Published var conferencesListViewModel = ConferencesListViewModel()
     }
     
     enum Mode {

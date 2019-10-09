@@ -18,7 +18,17 @@ struct ConferencesList: View {
     
     var body: some View {
         List {
-            Text("List")
+            ForEach(viewModel.dataSource) { section in
+                Section(header: Text("\(section.sectionName)")) {
+                    ForEach(section.cards) { cardViewModel in
+                        ConferenceCard(cardViewModel: cardViewModel)
+                    }
+                }
+            }
+
+            .onAppear() {
+
+            }
         }
     }
 }
