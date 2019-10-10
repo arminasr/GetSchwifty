@@ -1,5 +1,5 @@
 //
-//  SwiftConference.swift
+//  Conference.swift
 //  
 //
 //  Created by Arminas on 2019-09-28.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public struct SwiftConference: Codable {
+public struct Conference: Codable {
     public let name: String
     public let start: Date?
     public let end: Date?

@@ -20,28 +20,28 @@ struct ConferenceCardViewModel: Identifiable {
     }
     
     let id = UUID()
-    private let swiftConference: SwiftConference
+    private let conference: Conference
     
-    init(swiftConference: SwiftConference) {
-        self.swiftConference = swiftConference
+    init(swiftConference: Conference) {
+        self.conference = swiftConference
     }
     
     var conferenceName: String {
-        return swiftConference.name
+        return conference.name
     }
     
     var conferenceDate: String {
-        guard let startDate = swiftConference.start else {
+        guard let startDate = conference.start else {
             return "TBA"
         }
-        guard let endDate = swiftConference.end else {
+        guard let endDate = conference.end else {
             return conferenceIntervalFormatter.string(from: startDate, to: startDate)
         }
         return conferenceIntervalFormatter.string(from: startDate, to: endDate)
     }
     
     var location: String {
-        guard let location = swiftConference.location else {
+        guard let location = conference.location else {
             return "TBA"
         }
         return location
@@ -52,7 +52,7 @@ struct ConferenceCardViewModel: Identifiable {
     }
     
     private var websiteButtonModel: ActionButtonModel? {
-        guard let link = swiftConference.link else {
+        guard let link = conference.link else {
             return nil
         }
         return ActionButtonModel(icon: Image(systemName: "globe"),
@@ -62,7 +62,7 @@ struct ConferenceCardViewModel: Identifiable {
     }
     
     private var favouritesButtonModel: ActionButtonModel? {
-        guard swiftConference.link != nil else {
+        guard conference.link != nil else {
             return nil
         }
         let image = isFavourite ? Image(systemName: "start") : Image(systemName: "star.fill")
@@ -74,7 +74,7 @@ struct ConferenceCardViewModel: Identifiable {
     
     private var cfpButtonModel: ActionButtonModel? {
         let image = Image(systemName: "pencil.circle")
-        guard let cfp = swiftConference.cfp else {
+        guard let cfp = conference.cfp else {
             return ActionButtonModel(icon: image,
                                      text: "See website for details",
                                      isActive: false)

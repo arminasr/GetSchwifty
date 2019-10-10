@@ -15,6 +15,6 @@ public enum RemoteSwiftConferencesDataStoreError: Error {
 }
 
 @available(iOS 13.0, *)
-public protocol RemoteSwiftConferencesDataStore {
-    func getSwiftConferences() -> AnyPublisher<[SwiftConference], RemoteSwiftConferencesDataStoreError>
+public protocol RemoteConferencesDataStore {
+    func getSwiftConferences() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError>
 }

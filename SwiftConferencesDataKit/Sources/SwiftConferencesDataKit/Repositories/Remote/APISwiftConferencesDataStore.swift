@@ -11,22 +11,22 @@ import Combine
 import Yams
 
 @available(iOS 13.0, *)
-public class APISwiftConferencesDataStore: RemoteSwiftConferencesDataStore {
+class APISwiftConferencesDataStore: RemoteConferencesDataStore {
     
     private let apiClient: APIClient
     private let baseURLString: String
 
-    public init(apiClient: APIClient, baseURLString: String) {
+    init(apiClient: APIClient, baseURLString: String) {
         self.apiClient = apiClient
         self.baseURLString = baseURLString
     }
     
-    public func getSwiftConferences() -> AnyPublisher<[SwiftConference], RemoteSwiftConferencesDataStoreError> {
+    func getSwiftConferences() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
         return getEntity(.SwiftConference)
             .map {
                 String(decoding: $0, as: UTF8.self)
             }
-            .decode(type: [SwiftConference].self, decoder: YAMLDecoder())
+            .decode(type: [Conference].self, decoder: YAMLDecoder())
             .catch {
                 Fail(error: .decodingError($0))
             }

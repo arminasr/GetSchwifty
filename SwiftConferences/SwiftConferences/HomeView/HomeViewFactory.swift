@@ -10,8 +10,8 @@ import SwiftUI
 import SwiftConferencesDataKit
 
 enum HomeViewFactory {
-    static func makeHomeView(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) -> some View {
-        let viewModel = HomeViewModel(conferencesDataStore: conferencesDataStore)
+    static func makeHomeView(conferenceRepository: ConferenceRepositoryProtocol) -> some View {
+        let viewModel = HomeViewModel(conferenceRepository: conferenceRepository)
         
         return HomeView(viewModel: viewModel)
     }

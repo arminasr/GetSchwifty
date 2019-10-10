@@ -15,17 +15,17 @@ struct ConferenceCard: View {
     var body: some View {
         VStack {
             HStack() {
-                Text("\(cardViewModel.conferenceName)").font(.largeTitle).colorInvert().lineLimit(nil)
+                Text("\(cardViewModel.conferenceName)").font(.title).lineLimit(nil)
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
             HStack {
-                Text("\(cardViewModel.conferenceDate)").font(.subheadline).colorInvert()
+                Text("\(cardViewModel.conferenceDate)").font(.headline)
                 Spacer()
             }
             HStack {
-                Text("\(cardViewModel.location)").font(.caption).colorInvert()
+                Text("\(cardViewModel.location)").font(.footnote)
                 Spacer()
             }
             HStack {

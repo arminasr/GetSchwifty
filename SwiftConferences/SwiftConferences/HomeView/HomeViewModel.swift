@@ -13,36 +13,36 @@ import SwiftConferencesDataKit
 class HomeViewModel: ObservableObject {
     
     @Published var viewModelDTO = HomeViewModelDTO()
-    @Published private var swiftConferences: [SwiftConference] = [] {
+    
+    private let conferenceRepository: ConferenceRepositoryProtocol
+    private var disposables = Set<AnyCancellable>()
+    private var conferences: [Conference] = [] {
         didSet {
-            viewModelDTO.swiftConferences = swiftConferences
+            viewModelDTO.conferences = conferences
         }
     }
-    
-    private let conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore
-    private var disposables = Set<AnyCancellable>()
 
-    init(conferencesDataStore: SwiftConferencesDataKit.RemoteSwiftConferencesDataStore) {
-        self.conferencesDataStore = conferencesDataStore
-        fetchConferences()
+    init(conferenceRepository: ConferenceRepositoryProtocol) {
+        self.conferenceRepository = conferenceRepository
+        loadConferences()
     }
     
-    func fetchConferences() {
-        conferencesDataStore.getSwiftConferences()
+    func loadConferences() {
+        conferenceRepository.getConferences()
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in
                     guard let self = self else { return }
                     switch value {
                     case .failure:
-                        self.swiftConferences = []
+                        self.conferences = []
                     case .finished:
                         break
                     }
                 },
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
-                    self.swiftConferences = conferences
+                    self.conferences = conferences
             })
             .store(in: &disposables)
     }
@@ -50,9 +50,9 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
-        @Published var swiftConferences: [SwiftConference] = [] {
+        @Published var conferences: [Conference] = [] {
             didSet {
-                conferencesListViewModel.conferences = swiftConferences
+                conferencesListViewModel.conferences = conferences
             }
         }
         @Published var navigationBarTitle: String = "Swift Conferences"
