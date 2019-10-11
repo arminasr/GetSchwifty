@@ -36,7 +36,16 @@ class ConferencesListViewModel: ObservableObject {
                 }
                 return endDate < Date() ? false : true
             }
+            .sorted(by: {
+                if let firstStart = $0.start, let secondStart = $1.start {
+                    return firstStart < secondStart
+                } else if let firstEnd = $0.end, let secondEnd = $1.end {
+                    return firstEnd < secondEnd
+                }
+                return false
+            })
             .map(ConferenceCardViewModel.init)
+        
         return section
     }
     
@@ -54,7 +63,16 @@ class ConferencesListViewModel: ObservableObject {
                 }
                 return endDate < Date() ? true : false
             }
+            .sorted(by: {
+                if let firstStart = $0.start, let secondStart = $1.start {
+                    return firstStart > secondStart
+                } else if let firstEnd = $0.end, let secondEnd = $1.end {
+                    return firstEnd > secondEnd
+                }
+                return false
+            })
             .map(ConferenceCardViewModel.init)
+
         return section
     }
 }

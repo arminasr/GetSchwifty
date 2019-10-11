@@ -22,8 +22,7 @@ struct HomeView: View {
                 ConferencesNavigationBar()
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
             }
-            .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)",
-                                displayMode: .large)
+            .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)")
         }
     }
 }
