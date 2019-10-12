@@ -24,6 +24,7 @@
 		4296EC39233B1A7200F93FB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4296EC38233B1A7200F93FB3 /* Preview Assets.xcassets */; };
 		4296EC3C233B1A7200F93FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4296EC3A233B1A7200F93FB3 /* LaunchScreen.storyboard */; };
 		4296EC47233B1A7200F93FB3 /* iOSConferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC46233B1A7200F93FB3 /* iOSConferencesTests.swift */; };
+		42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DBEE1A23520854003D374D /* Date+Midnight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		4296EC42233B1A7200F93FB3 /* SwiftConferencesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftConferencesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4296EC46233B1A7200F93FB3 /* iOSConferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSConferencesTests.swift; sourceTree = "<group>"; };
 		4296EC48233B1A7200F93FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42DBEE1A23520854003D374D /* Date+Midnight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Midnight.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				427E4AF1234303EA00732BB2 /* Formatters.swift */,
+				42DBEE1A23520854003D374D /* Date+Midnight.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				427E4ADD233F4A0A00732BB2 /* ConferencesNavigationBar.swift in Sources */,
 				427E4AEF234301E200732BB2 /* ConferenceCardViewModel.swift in Sources */,
 				427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */,
+				42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
