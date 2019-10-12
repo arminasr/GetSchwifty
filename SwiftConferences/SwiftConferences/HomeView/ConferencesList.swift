@@ -17,24 +17,18 @@ struct ConferencesList: View {
     }
     
     var body: some View {
-        List {
+        ScrollView() {
             ForEach(viewModel.conferenceListSections) { section in
-                Section(header: Text("\(section.sectionName)")) {
+                Section(header:
+                    Text("\(section.sectionName)")
+                        .font(.headline)
+                        .padding()) {
                     ForEach(section.cards) { cardViewModel in
                         ConferenceCard(cardViewModel: cardViewModel)
                     }
                 }
             }
-
-            .onAppear() {
-
-            }
+            .padding()
         }
     }
 }
-
-//struct ConferencesList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ConferencesList()
-//    }
-//}

@@ -15,43 +15,42 @@ struct ConferenceCard: View {
     var body: some View {
         VStack {
             HStack() {
-                Text("\(cardViewModel.conferenceName)").font(.title).lineLimit(nil).colorInvert()
+                Text("\(cardViewModel.conferenceName)")
+                    .font(.title)
+                    .lineLimit(nil)
                 Spacer()
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
             HStack {
-                Text("\(cardViewModel.conferenceDate)").font(.headline).colorInvert()
+                Text("\(cardViewModel.conferenceDate)").font(.headline)
+                .foregroundColor(Color("Electric"))
                 Spacer()
             }
             HStack {
-                Text("\(cardViewModel.location)").font(.footnote).colorInvert()
+                Text("\(cardViewModel.location)").font(.footnote)
+                .foregroundColor(Color("Electric"))
                 Spacer()
             }
+            
             HStack {
-                Button(action: {
-                    print("Favourites")
-                }) {
-                    Image(systemName: "globe").foregroundColor(Color("Electric"))
+                ForEach(cardViewModel.actionButtons) { buttonModel in
+                    VStack {
+                        Button(action: {
+                            print("Favourites")
+                        }) {
+                            buttonModel.icon
+                        }
+                        Text("\(buttonModel.text)").font(.footnote)
+                    }
+                    .padding()
+                    .foregroundColor(Color("Electric"))
                 }
-                .padding()
-                Button(action: {
-                    print("Favourites")
-                }) {
-                    Image(systemName: "star").foregroundColor(Color("Electric"))
-                }
-                .padding()
-                Button(action: {
-                    print("Favourites")
-                }) {
-                    Image(systemName: "pencil.circle").foregroundColor(Color("Electric"))
-                }
-                .padding()
             }
         }
         .padding()
         .background(Color("CardBackgroungColor"))
-        
         .cornerRadius(30)
+        .shadow(color: Color("Electric"), radius: 4, x: 0, y: 2)
     }
 }

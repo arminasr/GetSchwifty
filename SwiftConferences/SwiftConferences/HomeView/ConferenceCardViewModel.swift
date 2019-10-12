@@ -12,7 +12,8 @@ import SwiftConferencesDataKit
 
 struct ConferenceCardViewModel: Identifiable {
     
-    struct ActionButtonModel {
+    struct ActionButtonModel: Identifiable {
+        let id = UUID()
         let icon: Image
         let text: String
         let isActive: Bool
@@ -66,7 +67,7 @@ struct ConferenceCardViewModel: Identifiable {
             return nil
         }
         let image = isFavourite ? Image(systemName: "start") : Image(systemName: "star.fill")
-        let text = isFavourite ? "Favourite" : "Unfavourite"
+        let text = isFavourite ? "Unfavourite" : "Favourite"
         return ActionButtonModel(icon: image,
                                  text: text,
                                  isActive: true)

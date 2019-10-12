@@ -19,7 +19,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ConferencesNavigationBar()
+                //ConferencesNavigationBar()
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
             }
             .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)")
