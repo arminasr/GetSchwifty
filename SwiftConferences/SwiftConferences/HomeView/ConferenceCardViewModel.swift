@@ -77,19 +77,19 @@ struct ConferenceCardViewModel: Identifiable {
         let image = Image(systemName: "pencil.circle")
         guard let cfp = conference.cfp else {
             return ActionButtonModel(icon: image,
-                                     text: "See website for details",
+                                     text: "See website\nfor details",
                                      isActive: false)
         }
         guard cfp.containsLink && cfp.containsDeadline else {
             if cfp.containsLink {
                 return ActionButtonModel(icon: image,
-                                         text: "Deadline not specified",
+                                         text: "Deadline\nnot specified",
                                          isActive: true,
                                          link: cfp.link)
             }
             if let deadline = cfp.deadline {
                 return ActionButtonModel(icon: image,
-                                         text: "Deadline \(DateFormatter().string(from: deadline)). See website for details",
+                                         text: "Deadline \(DateFormatter().string(from: deadline)). See website\nfor details",
                                          isActive: false)
             }
             return nil

@@ -17,6 +17,7 @@ struct ConferenceCard: View {
             HStack() {
                 Text("\(cardViewModel.conferenceName)")
                     .font(.title)
+                    .foregroundColor(Color(.systemTeal))
                     .lineLimit(nil)
                 Spacer()
             }
@@ -24,33 +25,36 @@ struct ConferenceCard: View {
             
             HStack {
                 Text("\(cardViewModel.conferenceDate)").font(.headline)
-                .foregroundColor(Color("Electric"))
                 Spacer()
             }
             HStack {
                 Text("\(cardViewModel.location)").font(.footnote)
-                .foregroundColor(Color("Electric"))
                 Spacer()
             }
             
             HStack {
                 ForEach(cardViewModel.actionButtons) { buttonModel in
-                    VStack {
-                        Button(action: {
-                            print("Favourites")
-                        }) {
+                    Button(action: {
+                        print("Favourites")
+                    }) {
+                        VStack {
                             buttonModel.icon
+                            Text("\(buttonModel.text)")
+                                .lineLimit(2)
+                                .font(.footnote)
                         }
-                        Text("\(buttonModel.text)").font(.footnote)
                     }
-                    .padding()
-                    .foregroundColor(Color("Electric"))
+                    .fixedSize()
+                    .foregroundColor(Color(.systemTeal))
+                    .disabled(!buttonModel.isActive)
                 }
             }
+            .padding()
+            
         }
         .padding()
-        .background(Color("CardBackgroungColor"))
+        .background(Color(.systemGray6))
         .cornerRadius(30)
-        .shadow(color: Color("Electric"), radius: 4, x: 0, y: 2)
+        .shadow(color: Color(.systemTeal), radius: 4, x: 0, y: 2)
     }
 }

@@ -24,11 +24,10 @@ struct ConferencesList: View {
                         .font(.headline)
                         .padding()) {
                     ForEach(section.cards) { cardViewModel in
-                        ConferenceCard(cardViewModel: cardViewModel)
+                        ConferenceCard(cardViewModel: cardViewModel).padding()
                     }
                 }
             }
-            .padding()
         }
     }
 }
