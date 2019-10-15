@@ -32,13 +32,15 @@ struct ConferenceCard: View {
                 Spacer()
             }
             
-            HStack {
+            HStack(alignment: .top, spacing: 44) {
                 ForEach(cardViewModel.actionButtons) { buttonModel in
                     Button(action: {
                         print("Favourites")
                     }) {
-                        VStack {
-                            buttonModel.icon
+                        VStack(alignment: .center) {
+                            Image(systemName: buttonModel.iconName)
+                                .resizable()
+                                .frame(width: 30, height: 30)
                             Text("\(buttonModel.text)")
                                 .lineLimit(2)
                                 .font(.footnote)

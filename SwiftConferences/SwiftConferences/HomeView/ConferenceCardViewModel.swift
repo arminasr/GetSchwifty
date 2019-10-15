@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import SwiftUI
 import SwiftConferencesDataKit
 
 struct ConferenceCardViewModel: Identifiable {
     
     struct ActionButtonModel: Identifiable {
         let id = UUID()
-        let icon: Image
+        let iconName: String
         let text: String
         let isActive: Bool
         var link: URL? = nil
@@ -56,7 +55,7 @@ struct ConferenceCardViewModel: Identifiable {
         guard let link = conference.link else {
             return nil
         }
-        return ActionButtonModel(icon: Image(systemName: "globe"),
+        return ActionButtonModel(iconName: "globe",
                                  text: "Website",
                                  isActive: true,
                                  link: link)
@@ -66,29 +65,29 @@ struct ConferenceCardViewModel: Identifiable {
         guard conference.link != nil else {
             return nil
         }
-        let image = isFavourite ? Image(systemName: "start") : Image(systemName: "star.fill")
+        let image = isFavourite ? "star" : "star.fill"
         let text = isFavourite ? "Unfavourite" : "Favourite"
-        return ActionButtonModel(icon: image,
+        return ActionButtonModel(iconName: image,
                                  text: text,
                                  isActive: true)
     }
     
     private var cfpButtonModel: ActionButtonModel? {
-        let image = Image(systemName: "pencil.circle")
+        let iconName = "pencil.circle"
         guard let cfp = conference.cfp else {
-            return ActionButtonModel(icon: image,
+            return ActionButtonModel(iconName: iconName,
                                      text: "See website\nfor details",
                                      isActive: false)
         }
         guard cfp.containsLink && cfp.containsDeadline else {
             if cfp.containsLink {
-                return ActionButtonModel(icon: image,
+                return ActionButtonModel(iconName: iconName,
                                          text: "Deadline\nnot specified",
                                          isActive: true,
                                          link: cfp.link)
             }
             if let deadline = cfp.deadline {
-                return ActionButtonModel(icon: image,
+                return ActionButtonModel(iconName: iconName,
                                          text: "Deadline \(DateFormatter().string(from: deadline)). See website\nfor details",
                                          isActive: false)
             }
