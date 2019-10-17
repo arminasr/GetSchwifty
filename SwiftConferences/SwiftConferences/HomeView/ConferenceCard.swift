@@ -11,6 +11,7 @@ import SwiftUI
 struct ConferenceCard: View {
     
     @State var cardViewModel: ConferenceCardViewModel
+    @State var isPresented = false
     
     var body: some View {
         VStack {
@@ -35,7 +36,7 @@ struct ConferenceCard: View {
             HStack(alignment: .top, spacing: 44) {
                 ForEach(cardViewModel.actionButtons) { buttonModel in
                     Button(action: {
-                        print("Favourites")
+                        self.isPresented.toggle()
                     }) {
                         VStack(alignment: .center) {
                             Image(systemName: buttonModel.iconName)
@@ -53,6 +54,9 @@ struct ConferenceCard: View {
             }
             .padding()
             
+        }
+        .sheet(isPresented: $isPresented) {
+            WebView(url: self.cardViewModel.actionButtons[0].link!)
         }
         .padding()
         .background(Color(.systemGray6))
