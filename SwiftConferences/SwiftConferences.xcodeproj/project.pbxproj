@@ -25,6 +25,7 @@
 		4296EC3C233B1A7200F93FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4296EC3A233B1A7200F93FB3 /* LaunchScreen.storyboard */; };
 		4296EC47233B1A7200F93FB3 /* iOSConferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC46233B1A7200F93FB3 /* iOSConferencesTests.swift */; };
 		42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DBEE1A23520854003D374D /* Date+Midnight.swift */; };
+		C40B14E4235997FE00891E40 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B14E3235997FE00891E40 /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		4296EC46233B1A7200F93FB3 /* iOSConferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSConferencesTests.swift; sourceTree = "<group>"; };
 		4296EC48233B1A7200F93FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBEE1A23520854003D374D /* Date+Midnight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Midnight.swift"; sourceTree = "<group>"; };
+		C40B14E3235997FE00891E40 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		4296EC2E233B1A7000F93FB3 /* SwiftConferences */ = {
 			isa = PBXGroup;
 			children = (
+				C40B14E3235997FE00891E40 /* Coordinator.swift */,
 				4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */,
 				4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */,
 				427E4AEA2343009400732BB2 /* HomeView */,
@@ -273,6 +276,7 @@
 			files = (
 				4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */,
 				427E4AF723445A3300732BB2 /* ConferencesListViewModel.swift in Sources */,
+				C40B14E4235997FE00891E40 /* Coordinator.swift in Sources */,
 				42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */,
 				427E4AED234300D700732BB2 /* HomeViewModel.swift in Sources */,
 				427E4AF2234303EA00732BB2 /* Formatters.swift in Sources */,

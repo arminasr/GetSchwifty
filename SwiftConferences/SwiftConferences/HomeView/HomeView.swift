@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
+    @State var isPresented = false
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -23,6 +24,9 @@ struct HomeView: View {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
             }
             .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)")
+        }
+        .sheet(isPresented: $isPresented) {
+            WebView(url: URL(string: "https://nsspain.com")!)
         }
     }
 }

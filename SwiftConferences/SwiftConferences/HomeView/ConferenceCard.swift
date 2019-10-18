@@ -55,9 +55,6 @@ struct ConferenceCard: View {
             .padding()
             
         }
-        .sheet(isPresented: $isPresented) {
-            WebView(url: self.cardViewModel.actionButtons[0].link!)
-        }
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(30)
