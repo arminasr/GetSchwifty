@@ -23,19 +23,13 @@ struct WebView: UIViewRepresentable {
     
     let url: URL
     
-    var request: URLRequest {
+    private var request: URLRequest {
       return URLRequest(url: url)
     }
     
     func makeUIView(context: Context) -> WKWebView  {
-        let preferences = WKPreferences()
-
-        
-        let configuration = WKWebViewConfiguration()
-        configuration.preferences = preferences
-        let webView = WKWebView(frame: .zero, configuration: configuration)
+        let webView = WKWebView()
         webView.allowsBackForwardNavigationGestures = true
-        
         
         return webView
     }
