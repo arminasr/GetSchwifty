@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             coordinator = Coordinator(scene: windowScene)
-            coordinator?.coordinate()
         }
     }
 

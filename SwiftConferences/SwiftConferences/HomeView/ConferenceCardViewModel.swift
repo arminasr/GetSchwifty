@@ -9,22 +9,15 @@
 import UIKit
 import SwiftConferencesDataKit
 
-struct ConferenceCardViewModel: Identifiable {
+class ConferenceCardViewModel: Identifiable {
     
-    struct ActionButtonModel: Identifiable {
-        let id = UUID()
-        let iconName: String
-        let text: String
-        let isActive: Bool
-        var link: URL? = nil
+    private let conference: Conference
+    
+    init(conference: Conference) {
+        self.conference = conference
     }
     
     let id = UUID()
-    private let conference: Conference
-    
-    init(swiftConference: Conference) {
-        self.conference = swiftConference
-    }
     
     var conferenceName: String {
         return conference.name
@@ -96,7 +89,19 @@ struct ConferenceCardViewModel: Identifiable {
         return nil
     }
     
+    // TODO: implement isFavourite state tracking
+    
     private var isFavourite: Bool {
         return false
+    }
+}
+
+extension ConferenceCardViewModel {
+    struct ActionButtonModel: Identifiable {
+        let id = UUID()
+        let iconName: String
+        let text: String
+        let isActive: Bool
+        var link: URL? = nil
     }
 }

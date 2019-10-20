@@ -10,8 +10,7 @@ import SwiftUI
 
 struct ConferenceCard: View {
     
-    @State var cardViewModel: ConferenceCardViewModel
-    @State var isPresented = false
+    var cardViewModel: ConferenceCardViewModel
     
     var body: some View {
         VStack {
@@ -36,7 +35,7 @@ struct ConferenceCard: View {
             HStack(alignment: .top, spacing: 44) {
                 ForEach(cardViewModel.actionButtons) { buttonModel in
                     Button(action: {
-                        self.isPresented.toggle()
+
                     }) {
                         VStack(alignment: .center) {
                             Image(systemName: buttonModel.iconName)

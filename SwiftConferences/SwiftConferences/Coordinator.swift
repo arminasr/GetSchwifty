@@ -13,20 +13,34 @@ import UIKit
 import SwiftUI
 
 class Coordinator {
-    private let scene: UIWindowScene
     private let window: UIWindow
+    @State private var presentWebViewOnHomeView = false
+    @State private var webViewUrl: URL!
     
     init(scene: UIWindowScene) {
-        self.scene = scene
         self.window = UIWindow(windowScene: scene)
         window.makeKeyAndVisible()
+        coordinateToHomeView()
     }
     
-    func coordinate() {
+    private func coordinateToHomeView() {
         var conferenceRepository: ConferenceRepositoryProtocol {
             ConferenceRepository()
         }
-        let homeView = HomeViewFactory.makeHomeView(conferenceRepository: conferenceRepository)
+    
+        let homeView = ViewsFactory.homeView()
+        
         window.rootViewController = UIHostingController(rootView: homeView)
+    }
+}
+
+protocol HomeViewCoordinating {
+    func toggleWebViewPresentation(for url: URL)
+}
+
+extension Coordinator: HomeViewCoordinating {
+    func toggleWebViewPresentation(for url: URL) {
+        webViewUrl = url
+        presentWebViewOnHomeView.toggle()
     }
 }

@@ -10,24 +10,19 @@ import Foundation
 import Combine
 import SwiftConferencesDataKit
 
-class HomeViewModel: ObservableObject {
+class HomeViewModel {
     
-    @Published var viewModelDTO = HomeViewModelDTO()
+    var viewModelDTO = HomeViewModelDTO()
     
     private let conferenceRepository: ConferenceRepositoryProtocol
     private var disposables = Set<AnyCancellable>()
-    private var conferences: [Conference] = [] {
-        didSet {
-            viewModelDTO.conferences = conferences
-        }
-    }
 
     init(conferenceRepository: ConferenceRepositoryProtocol) {
         self.conferenceRepository = conferenceRepository
         loadConferences()
     }
     
-    func loadConferences() {
+    private func loadConferences() {
         conferenceRepository.getConferences()
             .receive(on: DispatchQueue.main)
             .sink(
@@ -35,33 +30,26 @@ class HomeViewModel: ObservableObject {
                     guard let self = self else { return }
                     switch value {
                     case .failure:
-                        self.conferences = []
+                        self.viewModelDTO.reload(with: [])
                     case .finished:
                         break
                     }
                 },
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
-                    self.conferences = conferences
+                    self.viewModelDTO.reload(with: conferences)
             })
             .store(in: &disposables)
     }
 }
 
 extension HomeViewModel {
-    class HomeViewModelDTO: ObservableObject {
-        @Published var conferences: [Conference] = [] {
-            didSet {
-                conferencesListViewModel.conferences = conferences
-            }
+    class HomeViewModelDTO {
+        var navigationBarTitle: String = "Swift Conferences"
+        var conferencesListViewModel = ConferencesListViewModel()
+        
+        func reload(with conferences: [Conference]) {
+            conferencesListViewModel.reload(with: conferences)
         }
-        @Published var navigationBarTitle: String = "Swift Conferences"
-        //@Published var navigationBarViewModel: NavigationBarViewModel
-        @Published var conferencesListViewModel = ConferencesListViewModel()
-    }
-    
-    enum Mode {
-        case favourite
-        case all
     }
 }
