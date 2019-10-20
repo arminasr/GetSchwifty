@@ -12,25 +12,29 @@ import SwiftConferencesAPIKit
 import UIKit
 import SwiftUI
 
-class Coordinator {
+struct Coordinator {
     private let window: UIWindow
-    @State private var presentWebViewOnHomeView = false
-    @State private var webViewUrl: URL!
+    @State private var presentWebViewOnHomeView = true
+    var homeView: HomeView
     
     init(scene: UIWindowScene) {
         self.window = UIWindow(windowScene: scene)
         window.makeKeyAndVisible()
+        homeView = ViewsFactory.homeView() as! HomeView
         coordinateToHomeView()
     }
     
-    private func coordinateToHomeView() {
+    private mutating func coordinateToHomeView() {
         var conferenceRepository: ConferenceRepositoryProtocol {
             ConferenceRepository()
         }
-    
-        let homeView = ViewsFactory.homeView()
+        homeView.viewModel.coordinator = self
         
-        window.rootViewController = UIHostingController(rootView: homeView)
+        window.rootViewController = UIHostingController(rootView: homeView
+//            .sheet(isPresented: $presentWebViewOnHomeView) {
+//                WebView(url: URL(string: "https://nsspain.com")!)
+//            }
+        )
     }
 }
 
@@ -40,7 +44,5 @@ protocol HomeViewCoordinating {
 
 extension Coordinator: HomeViewCoordinating {
     func toggleWebViewPresentation(for url: URL) {
-        webViewUrl = url
-        presentWebViewOnHomeView.toggle()
     }
 }

@@ -35,7 +35,7 @@ struct ConferenceCard: View {
             HStack(alignment: .top, spacing: 44) {
                 ForEach(cardViewModel.actionButtons) { buttonModel in
                     Button(action: {
-
+                        
                     }) {
                         VStack(alignment: .center) {
                             Image(systemName: buttonModel.iconName)

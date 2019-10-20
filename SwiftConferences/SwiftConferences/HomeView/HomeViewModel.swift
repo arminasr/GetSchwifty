@@ -13,6 +13,7 @@ import SwiftConferencesDataKit
 class HomeViewModel {
     
     var viewModelDTO = HomeViewModelDTO()
+    var coordinator: HomeViewCoordinating?
     
     private let conferenceRepository: ConferenceRepositoryProtocol
     private var disposables = Set<AnyCancellable>()
@@ -38,6 +39,7 @@ class HomeViewModel {
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
                     self.viewModelDTO.reload(with: conferences)
+                    self.coordinator?.toggleWebViewPresentation(for: URL(string: "https://nsspain.com")!)
             })
             .store(in: &disposables)
     }
