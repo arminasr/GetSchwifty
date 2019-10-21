@@ -28,7 +28,6 @@ struct Coordinator {
         var conferenceRepository: ConferenceRepositoryProtocol {
             ConferenceRepository()
         }
-        homeView.viewModel.coordinator = self
         window.rootViewController = UIHostingController(rootView: homeView)
     }
 }

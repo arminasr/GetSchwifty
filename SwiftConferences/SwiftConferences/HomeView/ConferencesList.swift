@@ -12,11 +12,14 @@ struct ConferencesList: View {
     
     @ObservedObject var viewModel: ConferencesListViewModel
     
+    init(viewModel: ConferencesListViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
-        ScrollView() {
+        ScrollView {
             ForEach(viewModel.conferencesListSections) { section in
-                Section(header:
-                    Text("\(section.sectionName)")
+                Section(header: Text("\(section.sectionName)")
                         .font(.headline)
                         .padding()) {
                     ForEach(section.cards) { cardViewModel in

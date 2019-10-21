@@ -16,12 +16,21 @@ struct ConferenceCard: View {
     
     var body: some View {
         VStack {
-            HStack() {
+            HStack(alignment: .top) {
                 Text("\(cardViewModel.conferenceName)")
                     .font(.title)
                     .foregroundColor(Color(.systemTeal))
                     .lineLimit(nil)
                 Spacer()
+                Button(action: {
+
+                }) {
+                    Image(systemName: cardViewModel.actionButtons.first(where: { $0.id == .favourite })!.iconName)
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                }
+                .fixedSize()
+                .accentColor(Color(.systemTeal))
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
@@ -35,7 +44,7 @@ struct ConferenceCard: View {
             }
             
             HStack(alignment: .top, spacing: 44) {
-                ForEach(cardViewModel.actionButtons) { buttonModel in
+                ForEach(cardViewModel.actionButtons.filter{ $0.id != .favourite }) { buttonModel in
                     Button(action: {
                         switch buttonModel.id {
                         case .website, .cfp:
@@ -52,7 +61,7 @@ struct ConferenceCard: View {
                             Group {
                                 Image(systemName: buttonModel.iconName)
                                     .resizable()
-                                    .frame(width: 30, height: 30)
+                                    .frame(width: 22, height: 22)
                                 Text("\(buttonModel.text)")
                                     .lineLimit(2)
                                     .multilineTextAlignment(.center)

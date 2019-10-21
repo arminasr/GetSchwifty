@@ -59,7 +59,7 @@ class ConferenceCardViewModel: Identifiable {
         guard conference.link != nil else {
             return nil
         }
-        let image = isFavourite ? "star" : "star.fill"
+        let image = isFavourite ? "star.fill" : "star"
         let text = isFavourite ? "Unfavourite" : "Favourite"
         return ActionButtonModel(id: .favourite,
                                  iconName: image,

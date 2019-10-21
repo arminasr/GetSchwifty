@@ -10,20 +10,35 @@ import Foundation
 import Combine
 import SwiftConferencesDataKit
 
-class HomeViewModel {
+class HomeViewModel: ObservableObject {
     
-    var viewModelDTO = HomeViewModelDTO()
-    var coordinator: HomeViewCoordinating?
+    enum HomeViewMode {
+        case all
+        case favourite
+    }
+    
+    @Published var viewModelDTO = HomeViewModelDTO()
+    
+    var mode: HomeViewMode = .all {
+        didSet {
+            if mode == .favourite {
+                viewModelDTO.favouriteIconName = "star.fill"
+            } else {
+                viewModelDTO.favouriteIconName = "star"
+            }
+            loadConferences(mode)
+        }
+    }
     
     private let conferenceRepository: ConferenceRepositoryProtocol
     private var disposables = Set<AnyCancellable>()
 
     init(conferenceRepository: ConferenceRepositoryProtocol) {
         self.conferenceRepository = conferenceRepository
-        loadConferences()
+        loadConferences(mode)
     }
     
-    private func loadConferences() {
+    private func loadConferences(_ mode: HomeViewMode) {
         conferenceRepository.getConferences()
             .receive(on: DispatchQueue.main)
             .sink(
@@ -39,14 +54,14 @@ class HomeViewModel {
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
                     self.viewModelDTO.reload(with: conferences)
-                    self.coordinator?.toggleWebViewPresentation(for: URL(string: "https://nsspain.com")!)
             })
             .store(in: &disposables)
     }
 }
 
 extension HomeViewModel {
-    class HomeViewModelDTO {
+    class HomeViewModelDTO: ObservableObject {
+        @Published var favouriteIconName: String = "star"
         var navigationBarTitle: String = "Swift Conferences"
         var conferencesListViewModel = ConferencesListViewModel()
         
