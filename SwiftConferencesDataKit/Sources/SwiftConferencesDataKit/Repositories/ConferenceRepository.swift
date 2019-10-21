@@ -9,34 +9,26 @@ import Foundation
 import Combine
 import SwiftConferencesAPIKit
 
-fileprivate let stored = UserDefaults.standard
-fileprivate let recordsKey = "UserDefaultsConferenceRecords"
-
 @available(iOS 13.0, *)
 public class ConferenceRepository: ConferenceRepositoryProtocol {
     
-    public init(){}
+    public init() {}
     
+    private var disposables = Set<AnyCancellable>()
     private var remoteDataStore: RemoteConferencesDataStore {
         APISwiftConferencesDataStore(apiClient: BaseAPIClient(),
                                      baseURLString: "https://raw.githubusercontent.com/Lascorbe/CocoaConferences/master/_data/")
     }
-    
-    public func getConferences() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
-        remoteDataStore.getSwiftConferences()
+    private var localDataStore: LocalConferencesDataStore {
+        UserDefaultsSwiftConferencesDataStore()
     }
     
-    func updateConferenceRecords(conferences: [Conference]) {
-        if let encodedRecords = try? PropertyListEncoder().encode(conferences){
-            stored.set(encodedRecords, forKey: recordsKey)}
-    }
-    
-    func initializeConferenceRecords() -> [Conference] {
-        guard let records = stored.value(forKey: recordsKey) as? Data,
-            let decodedRecords
-                = try? PropertyListDecoder()
-                    .decode([Conference].self,
-                            from: records) else {return [Conference]()}
-        return decodedRecords
+    public func conferencesPublisher() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
+        guard let conferences = localDataStore.getSwiftConferences() else {
+            //self.localDataStore.updateSwiftConferences(conferences)
+            return remoteDataStore.getSwiftConferences()
+        }
+
+        return Publishers.Sequence.init(sequence: conferences).collect().eraseToAnyPublisher()
     }
 }

@@ -39,7 +39,7 @@ class HomeViewModel: ObservableObject {
     }
     
     private func loadConferences(_ mode: HomeViewMode) {
-        conferenceRepository.getConferences()
+        conferenceRepository.conferencesPublisher()
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in

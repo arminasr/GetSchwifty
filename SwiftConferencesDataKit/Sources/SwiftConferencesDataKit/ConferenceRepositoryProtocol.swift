@@ -10,5 +10,5 @@ import Combine
 
 @available(iOS 13.0, *)
 public protocol ConferenceRepositoryProtocol {
-    func getConferences() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError>
+    func conferencesPublisher() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> 
 }
