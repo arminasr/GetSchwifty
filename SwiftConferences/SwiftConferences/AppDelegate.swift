@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwiftConferencesDataKit
-import SwiftConferencesAPIKit
 import Combine
 
 

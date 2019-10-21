@@ -14,3 +14,11 @@ let conferenceIntervalFormatter: DateIntervalFormatter = {
   formatter.dateTemplate = "MMMdy"
   return formatter
 }()
+
+let deadlineFormatter = { () -> DateFormatter in
+    let formatter = DateFormatter()
+    formatter.timeZone = .current
+    formatter.locale = .current
+    formatter.dateStyle = .short
+    return formatter
+}

@@ -12,22 +12,33 @@ import SwiftConferencesDataKit
 
 class HomeViewModel: ObservableObject {
     
+    enum HomeViewMode {
+        case all
+        case favourite
+    }
+    
     @Published var viewModelDTO = HomeViewModelDTO()
+    
+    var mode: HomeViewMode = .all {
+        didSet {
+            if mode == .favourite {
+                viewModelDTO.favouriteIconName = "star.fill"
+            } else {
+                viewModelDTO.favouriteIconName = "star"
+            }
+            loadConferences(mode)
+        }
+    }
     
     private let conferenceRepository: ConferenceRepositoryProtocol
     private var disposables = Set<AnyCancellable>()
-    private var conferences: [Conference] = [] {
-        didSet {
-            viewModelDTO.conferences = conferences
-        }
-    }
 
     init(conferenceRepository: ConferenceRepositoryProtocol) {
         self.conferenceRepository = conferenceRepository
-        loadConferences()
+        loadConferences(mode)
     }
     
-    func loadConferences() {
+    private func loadConferences(_ mode: HomeViewMode) {
         conferenceRepository.getConferences()
             .receive(on: DispatchQueue.main)
             .sink(
@@ -35,14 +46,14 @@ class HomeViewModel: ObservableObject {
                     guard let self = self else { return }
                     switch value {
                     case .failure:
-                        self.conferences = []
+                        self.viewModelDTO.reload(with: [])
                     case .finished:
                         break
                     }
                 },
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
-                    self.conferences = conferences
+                    self.viewModelDTO.reload(with: conferences)
             })
             .store(in: &disposables)
     }
@@ -50,18 +61,12 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
-        @Published var conferences: [Conference] = [] {
-            didSet {
-                conferencesListViewModel.conferences = conferences
-            }
+        @Published var favouriteIconName: String = "star"
+        var navigationBarTitle: String = "Swift Conferences"
+        var conferencesListViewModel = ConferencesListViewModel()
+        
+        func reload(with conferences: [Conference]) {
+            conferencesListViewModel.reload(with: conferences)
         }
-        @Published var navigationBarTitle: String = "Swift Conferences"
-        //@Published var navigationBarViewModel: NavigationBarViewModel
-        @Published var conferencesListViewModel = ConferencesListViewModel()
-    }
-    
-    enum Mode {
-        case favourite
-        case all
     }
 }

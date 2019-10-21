@@ -10,17 +10,27 @@ import SwiftUI
 
 struct ConferenceCard: View {
     
-    @State var cardViewModel: ConferenceCardViewModel
-    @State var isPresented = false
+    var cardViewModel: ConferenceCardViewModel
+    @State private var favouritesViewVisible = false
+    @State private var modalPresentationDetails: (isPresented: Bool, url: URL?) = (isPresented: false, url: nil)
     
     var body: some View {
         VStack {
-            HStack() {
+            HStack(alignment: .top) {
                 Text("\(cardViewModel.conferenceName)")
                     .font(.title)
                     .foregroundColor(Color(.systemTeal))
                     .lineLimit(nil)
                 Spacer()
+                Button(action: {
+
+                }) {
+                    Image(systemName: cardViewModel.actionButtons.first(where: { $0.id == .favourite })!.iconName)
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                }
+                .fixedSize()
+                .accentColor(Color(.systemTeal))
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
@@ -34,29 +44,40 @@ struct ConferenceCard: View {
             }
             
             HStack(alignment: .top, spacing: 44) {
-                ForEach(cardViewModel.actionButtons) { buttonModel in
+                ForEach(cardViewModel.actionButtons.filter{ $0.id != .favourite }) { buttonModel in
                     Button(action: {
-                        self.isPresented.toggle()
+                        switch buttonModel.id {
+                        case .website, .cfp:
+                            guard let url = buttonModel.url else {
+                                break
+                            }
+                            self.modalPresentationDetails.url = url
+                            self.modalPresentationDetails.isPresented.toggle()
+                        case .favourite:
+                            self.favouritesViewVisible.toggle()
+                        }
                     }) {
                         VStack(alignment: .center) {
-                            Image(systemName: buttonModel.iconName)
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                            Text("\(buttonModel.text)")
-                                .lineLimit(2)
-                                .font(.footnote)
+                            Group {
+                                Image(systemName: buttonModel.iconName)
+                                    .resizable()
+                                    .frame(width: 22, height: 22)
+                                Text("\(buttonModel.text)")
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.center)
+                                    .font(.footnote)
+                            }
                         }
                     }
                     .fixedSize()
-                    .foregroundColor(Color(.systemTeal))
+                    .accentColor(Color(.systemTeal))
                     .disabled(!buttonModel.isActive)
                 }
             }
             .padding()
-            
         }
-        .sheet(isPresented: $isPresented) {
-            WebView(url: self.cardViewModel.actionButtons[0].link!)
+        .sheet(isPresented: $modalPresentationDetails.isPresented) {
+            WebView(url: self.modalPresentationDetails.url!)
         }
         .padding()
         .background(Color(.systemGray6))

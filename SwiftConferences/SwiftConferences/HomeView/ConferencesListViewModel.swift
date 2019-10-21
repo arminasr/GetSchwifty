@@ -11,11 +11,11 @@ import SwiftConferencesDataKit
 import Combine
 
 class ConferencesListViewModel: ObservableObject {
-    @Published var conferenceListSections: [ConferencesListViewModel.Section] = []
-    @Published var conferences: [Conference] = [] {
-        didSet {
-            conferenceListSections = mapToSections(conferences: conferences)
-        }
+    
+    @Published var conferencesListSections: [ConferencesListViewModel.Section] = []
+    
+    func reload(with conferences: [Conference]) {
+        conferencesListSections = mapToSections(conferences: conferences)
     }
     
     private func mapToSections(conferences: [Conference]) -> [Section] {

@@ -1,22 +1,14 @@
 //
-//  HomeViewFactory.swift
+//  WebView.swift
 //  SwiftConferences
 //
-//  Created by Arminas on 2019-10-02.
+//  Created by Arminas on 2019-10-20.
 //  Copyright © 2019 Arminas. All rights reserved.
 //
 
+import UIKit
 import SwiftUI
-import SwiftConferencesDataKit
 import WebKit
-
-enum HomeViewFactory {
-    static func makeHomeView(conferenceRepository: ConferenceRepositoryProtocol) -> some View {
-        let viewModel = HomeViewModel(conferenceRepository: conferenceRepository)
-        
-        return HomeView(viewModel: viewModel)
-    }
-}
 
 struct WebView: UIViewRepresentable {
     typealias UIViewType = WKWebView

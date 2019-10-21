@@ -11,24 +11,30 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var viewModel: HomeViewModel
-
+    @ObservedObject private var viewModelDTO: HomeViewModel.HomeViewModelDTO
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
+        self.viewModelDTO = viewModel.viewModelDTO
     }
     
     var body: some View {
         NavigationView {
             VStack {
-                //ConferencesNavigationBar()
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
             }
-            .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)")
+            .navigationBarItems(trailing: Button(action: {
+                guard self.viewModel.mode == .all else {
+                    self.viewModel.mode = .all
+                    return
+                }
+                self.viewModel.mode = .favourite
+            }) {
+                Image(systemName: viewModel.viewModelDTO.favouriteIconName)
+                .resizable()
+                .frame(width: 22, height: 22)
+            })
+            .navigationBarTitle(Text("\(viewModel.viewModelDTO.navigationBarTitle)"))
         }
     }
 }
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}

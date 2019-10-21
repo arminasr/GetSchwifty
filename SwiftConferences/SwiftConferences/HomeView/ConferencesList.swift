@@ -17,14 +17,14 @@ struct ConferencesList: View {
     }
     
     var body: some View {
-        ScrollView() {
-            ForEach(viewModel.conferenceListSections) { section in
-                Section(header:
-                    Text("\(section.sectionName)")
+        ScrollView {
+            ForEach(viewModel.conferencesListSections) { section in
+                Section(header: Text("\(section.sectionName)")
                         .font(.headline)
                         .padding()) {
                     ForEach(section.cards) { cardViewModel in
-                        ConferenceCard(cardViewModel: cardViewModel).padding()
+                        ConferenceCard(cardViewModel: cardViewModel)
+                            .padding()
                     }
                 }
             }
