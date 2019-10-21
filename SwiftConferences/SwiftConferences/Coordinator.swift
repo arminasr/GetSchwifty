@@ -29,12 +29,7 @@ struct Coordinator {
             ConferenceRepository()
         }
         homeView.viewModel.coordinator = self
-        
-        window.rootViewController = UIHostingController(rootView: homeView
-//            .sheet(isPresented: $presentWebViewOnHomeView) {
-//                WebView(url: URL(string: "https://nsspain.com")!)
-//            }
-        )
+        window.rootViewController = UIHostingController(rootView: homeView)
     }
 }
 

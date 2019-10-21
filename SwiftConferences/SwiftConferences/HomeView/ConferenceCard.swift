@@ -11,6 +11,8 @@ import SwiftUI
 struct ConferenceCard: View {
     
     var cardViewModel: ConferenceCardViewModel
+    @State private var favouritesViewVisible = false
+    @State private var modalPresentationDetails: (isPresented: Bool, url: URL?) = (isPresented: false, url: nil)
     
     var body: some View {
         VStack {
@@ -35,24 +37,38 @@ struct ConferenceCard: View {
             HStack(alignment: .top, spacing: 44) {
                 ForEach(cardViewModel.actionButtons) { buttonModel in
                     Button(action: {
-                        
+                        switch buttonModel.id {
+                        case .website, .cfp:
+                            guard let url = buttonModel.url else {
+                                break
+                            }
+                            self.modalPresentationDetails.url = url
+                            self.modalPresentationDetails.isPresented.toggle()
+                        case .favourite:
+                            self.favouritesViewVisible.toggle()
+                        }
                     }) {
                         VStack(alignment: .center) {
-                            Image(systemName: buttonModel.iconName)
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                            Text("\(buttonModel.text)")
-                                .lineLimit(2)
-                                .font(.footnote)
+                            Group {
+                                Image(systemName: buttonModel.iconName)
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                Text("\(buttonModel.text)")
+                                    .lineLimit(2)
+                                    .multilineTextAlignment(.center)
+                                    .font(.footnote)
+                            }
                         }
                     }
                     .fixedSize()
-                    .foregroundColor(Color(.systemTeal))
+                    .accentColor(Color(.systemTeal))
                     .disabled(!buttonModel.isActive)
                 }
             }
             .padding()
-            
+        }
+        .sheet(isPresented: $modalPresentationDetails.isPresented) {
+            WebView(url: self.modalPresentationDetails.url!)
         }
         .padding()
         .background(Color(.systemGray6))

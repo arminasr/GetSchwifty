@@ -17,7 +17,7 @@ struct HomeView: View {
             VStack {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
             }
-            .navigationBarTitle("\(viewModel.viewModelDTO.navigationBarTitle)")
+            .navigationBarTitle(Text("\(viewModel.viewModelDTO.navigationBarTitle)"))
         }
     }
 }

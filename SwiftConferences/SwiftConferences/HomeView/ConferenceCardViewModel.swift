@@ -48,10 +48,11 @@ class ConferenceCardViewModel: Identifiable {
         guard let link = conference.link else {
             return nil
         }
-        return ActionButtonModel(iconName: "globe",
+        return ActionButtonModel(id: .website,
+                                 iconName: "globe",
                                  text: "Website",
                                  isActive: true,
-                                 link: link)
+                                 url: link)
     }
     
     private var favouritesButtonModel: ActionButtonModel? {
@@ -60,31 +61,34 @@ class ConferenceCardViewModel: Identifiable {
         }
         let image = isFavourite ? "star" : "star.fill"
         let text = isFavourite ? "Unfavourite" : "Favourite"
-        return ActionButtonModel(iconName: image,
+        return ActionButtonModel(id: .favourite,
+                                 iconName: image,
                                  text: text,
                                  isActive: true)
     }
     
     private var cfpButtonModel: ActionButtonModel? {
         let iconName = "pencil.circle"
-        guard let cfp = conference.cfp else {
-            return ActionButtonModel(iconName: iconName,
-                                     text: "See website\nfor details",
+        guard let cfp = conference.cfp, cfp.containsLink || cfp.containsDeadline else {
+            return ActionButtonModel(id: .cfp,
+                                     iconName: iconName,
+                                     text: "See website\nfor CFP details",
                                      isActive: false)
         }
-        guard cfp.containsLink && cfp.containsDeadline else {
-            if cfp.containsLink {
-                return ActionButtonModel(iconName: iconName,
-                                         text: "Deadline\nnot specified",
-                                         isActive: true,
-                                         link: cfp.link)
-            }
-            if let deadline = cfp.deadline {
-                return ActionButtonModel(iconName: iconName,
-                                         text: "Deadline \(DateFormatter().string(from: deadline)). See website\nfor details",
-                                         isActive: false)
-            }
-            return nil
+        if cfp.containsLink && cfp.containsDeadline {
+            return ActionButtonModel(id: .cfp,
+                                     iconName: iconName,
+                                     text: "CFP deadline \n\(deadlineFormatter().string(from: cfp.deadline!))",
+                                     isActive: true,
+                                     url: cfp.link)
+
+        }
+        if cfp.containsLink {
+            return ActionButtonModel(id: .cfp,
+                                     iconName: iconName,
+                                     text: "CFP deadline\nnot specified",
+                                     isActive: true,
+                                     url: cfp.link)
         }
         return nil
     }
@@ -98,10 +102,22 @@ class ConferenceCardViewModel: Identifiable {
 
 extension ConferenceCardViewModel {
     struct ActionButtonModel: Identifiable {
-        let id = UUID()
+        
+        enum ButtonType: Int {
+            case website = 0
+            case favourite = 1
+            case cfp = 2
+        }
+        
+        let id: ButtonType
         let iconName: String
         let text: String
         let isActive: Bool
-        var link: URL? = nil
+        var url: URL? = nil
     }
+    
+
+}
+extension ConferenceCardViewModel.ActionButtonModel.ButtonType: Identifiable {
+    var id: Int { rawValue }
 }
