@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject private var viewModel: HomeViewModel
     @ObservedObject private var viewModelDTO: HomeViewModel.HomeViewModelDTO
     
     init(viewModel: HomeViewModel) {
@@ -19,22 +19,23 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
+        ZStack {
+            ActivityIndicator(isAnimating: $viewModel.viewModelDTO.isLoading, style: .large)
+            NavigationView {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
+                    .navigationBarItems(trailing: Button(action: {
+                        guard self.viewModel.mode == .all else {
+                            self.viewModel.mode = .all
+                            return
+                        }
+                        self.viewModel.mode = .favourite
+                    }) {
+                        Image(systemName: viewModel.viewModelDTO.favouriteIconName)
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                    })
+                    .navigationBarTitle(Text("\(viewModel.viewModelDTO.navigationBarTitle)"))
             }
-            .navigationBarItems(trailing: Button(action: {
-                guard self.viewModel.mode == .all else {
-                    self.viewModel.mode = .all
-                    return
-                }
-                self.viewModel.mode = .favourite
-            }) {
-                Image(systemName: viewModel.viewModelDTO.favouriteIconName)
-                .resizable()
-                .frame(width: 22, height: 22)
-            })
-            .navigationBarTitle(Text("\(viewModel.viewModelDTO.navigationBarTitle)"))
         }
     }
 }

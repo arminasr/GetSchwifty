@@ -13,8 +13,14 @@ import Combine
 class ConferencesListViewModel: ObservableObject {
     
     @Published var conferencesListSections: [ConferencesListViewModel.Section] = []
+    @Published var emptyListMessage = ""
     
     func reload(with conferences: [Conference]) {
+        if conferences.isEmpty {
+            emptyListMessage = "No conferences found."
+        } else {
+            emptyListMessage = ""
+        }
         conferencesListSections = mapToSections(conferences: conferences)
     }
     

@@ -49,4 +49,16 @@ public class ConferenceRepository: ConferenceRepositoryProtocol {
             promise(.success(locallyCachedConferences))
         }
     }
+    
+    public func favouriteConferencesPublisher() -> Future<[Conference], ConferenceRepositoryError> {
+        guard let favouriteConferences = localDataStore.getFavouriteSwiftConferences() else {
+            return Future { promise in
+                promise(.failure(.favouriteConferencesDecodingError))
+            }
+        }
+
+        return Future { promise in
+            promise(.success(favouriteConferences))
+        }
+    }
 }

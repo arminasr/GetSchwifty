@@ -19,13 +19,16 @@ struct ConferencesList: View {
     
     var body: some View {
         List {
+            if !viewModel.emptyListMessage.isEmpty {
+                Text("\(viewModel.emptyListMessage)")
+            }
             ForEach(viewModel.conferencesListSections) { section in
                 Section(header: Text("\(section.sectionName)")
                         .font(.headline)
                         .padding()) {
                     ForEach(section.cards) { cardViewModel in
                         ConferenceCard(cardViewModel: cardViewModel)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                     }
                 }
             }

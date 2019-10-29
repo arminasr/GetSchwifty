@@ -37,9 +37,38 @@ class HomeViewModel: ObservableObject {
         self.conferenceRepository = conferenceRepository
         loadConferences(mode)
     }
-    
+        
     private func loadConferences(_ mode: HomeViewMode) {
+        viewModelDTO.isLoading = true
+        mode == .all ? loadAllConferences() : loadFavouriteConferences()
+    }
+    
+    private func loadAllConferences() {
         conferenceRepository.conferencesPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { [weak self] value in
+                    guard let self = self else { return }
+                    switch value {
+                    case .failure(let error):
+                        self.viewModelDTO.reload(with: [])
+                        self.viewModelDTO.isLoading = false
+                        self.viewModelDTO.conferencesListViewModel.emptyListMessage = error.localizedDescription
+                    case .finished:
+                        self.viewModelDTO.isLoading = false
+                        break
+                    }
+                },
+                receiveValue: { [weak self] conferences in
+                    guard let self = self else { return }
+                    self.viewModelDTO.isLoading = false
+                    self.viewModelDTO.reload(with: conferences)
+            })
+            .store(in: &disposables)
+    }
+    
+    private func loadFavouriteConferences() {
+        conferenceRepository.favouriteConferencesPublisher()
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in
@@ -47,12 +76,15 @@ class HomeViewModel: ObservableObject {
                     switch value {
                     case .failure:
                         self.viewModelDTO.reload(with: [])
+                        self.viewModelDTO.isLoading = false
                     case .finished:
+                        self.viewModelDTO.isLoading = false
                         break
                     }
                 },
                 receiveValue: { [weak self] conferences in
                     guard let self = self else { return }
+                    self.viewModelDTO.isLoading = false
                     self.viewModelDTO.reload(with: conferences)
             })
             .store(in: &disposables)
@@ -62,6 +94,7 @@ class HomeViewModel: ObservableObject {
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
         @Published var favouriteIconName: String = "star"
+        @Published var isLoading = false
         var navigationBarTitle: String = "Swift Conferences"
         var conferencesListViewModel = ConferencesListViewModel()
         
