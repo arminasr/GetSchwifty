@@ -23,12 +23,30 @@ public class ConferenceRepository: ConferenceRepositoryProtocol {
         UserDefaultsSwiftConferencesDataStore()
     }
     
-    public func conferencesPublisher() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
-        guard let conferences = localDataStore.getSwiftConferences() else {
-            //self.localDataStore.updateSwiftConferences(conferences)
-            return remoteDataStore.getSwiftConferences()
+    public func conferencesPublisher() -> Future<[Conference], ConferenceRepositoryError> {
+        guard let locallyCachedConferences = localDataStore.getSwiftConferences() else {
+            return Future { promise in
+                self.remoteDataStore.getSwiftConferences()
+                    .receive(on: DispatchQueue.main)
+                    .sink(
+                        receiveCompletion: {
+                            switch $0 {
+                            case .failure(let error):
+                                promise(.failure(.networkError(error)))
+                            case .finished:
+                                break
+                            }
+                        },
+                        receiveValue: { [unowned self] in
+                            self.localDataStore.updateSwiftConferences($0)
+                            promise(.success($0))
+                        })
+                    .store(in: &self.disposables)
+            }
         }
 
-        return Publishers.Sequence.init(sequence: conferences).collect().eraseToAnyPublisher()
+        return Future { promise in
+            promise(.success(locallyCachedConferences))
+        }
     }
 }
