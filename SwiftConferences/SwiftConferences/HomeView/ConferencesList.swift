@@ -13,18 +13,19 @@ struct ConferencesList: View {
     @ObservedObject var viewModel: ConferencesListViewModel
     
     init(viewModel: ConferencesListViewModel) {
+        UITableView.appearance().separatorStyle = .none
         self.viewModel = viewModel
     }
     
     var body: some View {
-        ScrollView {
+        List {
             ForEach(viewModel.conferencesListSections) { section in
                 Section(header: Text("\(section.sectionName)")
                         .font(.headline)
                         .padding()) {
                     ForEach(section.cards) { cardViewModel in
                         ConferenceCard(cardViewModel: cardViewModel)
-                            .padding()
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
                     }
                 }
             }

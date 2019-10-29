@@ -83,5 +83,6 @@ struct ConferenceCard: View {
         .background(Color(.systemGray6))
         .cornerRadius(30)
         .shadow(color: Color(.systemTeal), radius: 4, x: 0, y: 2)
+        .buttonStyle(PlainButtonStyle())
     }
 }
