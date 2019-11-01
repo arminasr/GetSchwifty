@@ -68,5 +68,22 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6F5F5F9-3156-4C03-8FEA-7CFF44AA63A1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            condition = "$0.name == &quot;ServerSide.swift&quot;"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftConferences/HomeView/ConferencesListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getPastConferencesSection(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

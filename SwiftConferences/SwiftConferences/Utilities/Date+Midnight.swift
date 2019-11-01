@@ -9,9 +9,7 @@
 import Foundation
 
 extension Date {
-    static var todaysMidnight: Date {
-        let now = Date()
-        let sameTimeTomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now)!
-        return Calendar.current.startOfDay(for: sameTimeTomorrow)
+    static func midnight(of date: Date) -> Date {
+        Calendar.current.startOfDay(for: date)
     }
 }

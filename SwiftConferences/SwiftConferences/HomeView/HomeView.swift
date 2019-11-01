@@ -34,7 +34,9 @@ struct HomeView: View {
                             .resizable()
                             .frame(width: 22, height: 22)
                     })
-                    .navigationBarTitle(Text("\(viewModel.viewModelDTO.navigationBarTitle)"))
+                    .navigationBarTitle(
+                        Text("\(viewModel.viewModelDTO.navigationBarTitle)")
+                )
             }
         }
     }

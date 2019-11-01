@@ -11,7 +11,6 @@ import SwiftUI
 struct ConferenceCard: View {
     
     var cardViewModel: ConferenceCardViewModel
-    @State private var favouritesViewVisible = false
     @State private var modalPresentationDetails: (isPresented: Bool, url: URL?) = (isPresented: false, url: nil)
     
     var body: some View {
@@ -19,18 +18,17 @@ struct ConferenceCard: View {
             HStack(alignment: .top) {
                 Text("\(cardViewModel.conferenceName)")
                     .font(.title)
-                    .foregroundColor(Color(.systemTeal))
+                    .foregroundColor(Color(.systemPink))
                     .lineLimit(nil)
                 Spacer()
-                Button(action: {
-
-                }) {
-                    Image(systemName: cardViewModel.actionButtons.first(where: { $0.id == .favourite })!.iconName)
-                        .resizable()
-                        .frame(width: 22, height: 22)
-                }
-                .fixedSize()
-                .accentColor(Color(.systemTeal))
+//                Button(action: {
+//
+//                }) {
+//                    Image(systemName: cardViewModel.actionButtons.first(where: { $0.id == .favourite })!.iconName)
+//                        .resizable()
+//                        .frame(width: 22, height: 22)
+//                }
+//                .fixedSize()
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
@@ -46,16 +44,11 @@ struct ConferenceCard: View {
             HStack(alignment: .top, spacing: 44) {
                 ForEach(cardViewModel.actionButtons.filter{ $0.id != .favourite }) { buttonModel in
                     Button(action: {
-                        switch buttonModel.id {
-                        case .website, .cfp:
-                            guard let url = buttonModel.url else {
-                                break
-                            }
-                            self.modalPresentationDetails.url = url
-                            self.modalPresentationDetails.isPresented.toggle()
-                        case .favourite:
-                            self.favouritesViewVisible.toggle()
+                        guard let url = buttonModel.url else {
+                            return
                         }
+                        self.modalPresentationDetails.url = url
+                        self.modalPresentationDetails.isPresented.toggle()
                     }) {
                         VStack(alignment: .center) {
                             Group {
@@ -70,11 +63,9 @@ struct ConferenceCard: View {
                         }
                     }
                     .fixedSize()
-                    .accentColor(Color(.systemTeal))
                     .disabled(!buttonModel.isActive)
                 }
             }
-            .padding()
         }
         .sheet(isPresented: $modalPresentationDetails.isPresented) {
             WebView(url: self.modalPresentationDetails.url!)
@@ -82,7 +73,8 @@ struct ConferenceCard: View {
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(30)
-        .shadow(color: Color(.systemTeal), radius: 4, x: 0, y: 2)
-        .buttonStyle(PlainButtonStyle())
+        .shadow(color: Color(.systemGray), radius: 4, x: 0, y: 2)
+        .buttonStyle(BorderlessButtonStyle())
+        .accentColor(Color(.systemPink))
     }
 }

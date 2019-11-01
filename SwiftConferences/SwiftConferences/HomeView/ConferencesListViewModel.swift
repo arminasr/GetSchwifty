@@ -40,7 +40,7 @@ class ConferencesListViewModel: ObservableObject {
                     }
                     return startDate < Date() ? false : true
                 }
-                return endDate < Date.todaysMidnight ? false : true
+                return Date.midnight(of: endDate) >= Date.midnight(of: Date()) ? true : false
             }
             .sorted(by: {
                 if let firstStart = $0.start, let secondStart = $1.start {
@@ -67,7 +67,7 @@ class ConferencesListViewModel: ObservableObject {
                     }
                     return startDate < Date() ? true : false
                 }
-                return endDate < Date.todaysMidnight ? true : false
+                return Date.midnight(of: endDate) < Date.midnight(of: Date()) ? true : false
             }
             .sorted(by: {
                 if let firstStart = $0.start, let secondStart = $1.start {
