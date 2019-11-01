@@ -73,7 +73,7 @@ struct ConferenceCard: View {
         .padding()
         .background(Color(.systemGray6))
         .cornerRadius(30)
-        .shadow(color: Color(.systemGray), radius: 4, x: 0, y: 2)
+        .shadow(color: Color(.systemGray2), radius: 4, x: 0, y: 2)
         .buttonStyle(BorderlessButtonStyle())
         .accentColor(Color(.systemPink))
     }
