@@ -21,14 +21,14 @@ class APISwiftConferencesDataStore: RemoteConferencesDataStore {
         self.baseURLString = baseURLString
     }
     
-    func getSwiftConferences() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
+    func swiftConferencesPublisher() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
         return getEntity(.SwiftConference)
             .map {
                 String(decoding: $0, as: UTF8.self)
             }
             .decode(type: [Conference].self, decoder: YAMLDecoder())
             .catch {
-                Fail(error: .decodingError($0))
+                Fail(error: .fetchingError("Remote fetching failed: \($0.localizedDescription)"))
             }
             .eraseToAnyPublisher()
     }

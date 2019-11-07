@@ -10,9 +10,9 @@ import Combine
 
 @available(iOS 13.0, *)
 public protocol LocalConferencesDataStore {
-    func getSwiftConferences() -> [Conference]?
+    func swiftConferencesPublisher() -> AnyPublisher<[Conference], Never>
     func updateSwiftConferences(_ conferences: [Conference])
     
-    func getFavouriteSwiftConferences() -> [Conference]?
+    func favouriteSwiftConferencesPublisher() -> AnyPublisher<[Conference], Never>
     func updateFavouriteSwiftConferences(_ conferences: [Conference])
 }

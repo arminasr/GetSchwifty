@@ -6,30 +6,40 @@
 //
 
 import Foundation
+import Combine
 
 class UserDefaultsSwiftConferencesDataStore: LocalConferencesDataStore {
     private let stored = UserDefaults.standard
     private let recordsKey = "UserDefaultsConferenceRecords"
     private let favouriteRecordsKey = "UserDefaultsFavouriteConferenceRecords"
     
-    func getSwiftConferences() -> [Conference]? {
+    func swiftConferencesPublisher() -> AnyPublisher<[Conference], Never> {
         guard let data = stored.value(forKey: recordsKey) as? Data else {
-            return nil
+            return Just([]).eraseToAnyPublisher()
         }
-        return try? PropertyListDecoder().decode([Conference].self, from: data)
+        guard let conferences = try? PropertyListDecoder().decode([Conference].self, from: data) else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        return Just(conferences).eraseToAnyPublisher()
     }
     
     func updateSwiftConferences(_ conferences: [Conference]) {
+        guard !conferences.isEmpty else {
+            return
+        }
         if let data = try? PropertyListEncoder().encode(conferences) {
             stored.set(data, forKey: recordsKey)
         }
     }
     
-    func getFavouriteSwiftConferences() -> [Conference]? {
+    func favouriteSwiftConferencesPublisher() -> AnyPublisher<[Conference], Never> {
         guard let data = stored.value(forKey: favouriteRecordsKey) as? Data else {
-            return nil
+            return Just([]).eraseToAnyPublisher()
         }
-        return try? PropertyListDecoder().decode([Conference].self, from: data)
+        guard let conferences = try? PropertyListDecoder().decode([Conference].self, from: data) else {
+            return Just([]).eraseToAnyPublisher()
+        }
+        return Just(conferences).eraseToAnyPublisher()
     }
     
     func updateFavouriteSwiftConferences(_ conferences: [Conference]) {

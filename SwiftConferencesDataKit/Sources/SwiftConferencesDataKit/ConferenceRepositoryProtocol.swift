@@ -9,12 +9,13 @@ import Foundation
 import Combine
 
 public enum ConferenceRepositoryError: Error {
-    case networkError(Error)
+    case networkError(String)
     case favouriteConferencesDecodingError
 }
 
 @available(iOS 13.0, *)
 public protocol ConferenceRepositoryProtocol {
-    func conferencesPublisher() -> Future<[Conference], ConferenceRepositoryError>
-    func favouriteConferencesPublisher() -> Future<[Conference], ConferenceRepositoryError>
+    var conferencesPublisher: PassthroughSubject<[Conference], ConferenceRepositoryError> { get }
+    func reload()
+    //func favouriteConferencesPublisher() -> AnyPublisher<[Conference], ConferenceRepositoryError>
 }

@@ -12,39 +12,15 @@ import SwiftConferencesDataKit
 
 class HomeViewModel: ObservableObject {
     
-    enum HomeViewMode {
-        case all
-        case favourite
-    }
-    
     @Published var viewModelDTO = HomeViewModelDTO()
-    
-    var mode: HomeViewMode = .all {
-        didSet {
-            if mode == .favourite {
-                viewModelDTO.favouriteIconName = "star.fill"
-            } else {
-                viewModelDTO.favouriteIconName = "star"
-            }
-            loadConferences(mode)
-        }
-    }
     
     private let conferenceRepository: ConferenceRepositoryProtocol
     private var disposables = Set<AnyCancellable>()
-
+    
     init(conferenceRepository: ConferenceRepositoryProtocol) {
         self.conferenceRepository = conferenceRepository
-        loadConferences(mode)
-    }
         
-    private func loadConferences(_ mode: HomeViewMode) {
-        viewModelDTO.isLoading = true
-        mode == .all ? loadAllConferences() : loadFavouriteConferences()
-    }
-    
-    private func loadAllConferences() {
-        conferenceRepository.conferencesPublisher()
+        self.conferenceRepository.conferencesPublisher
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in
@@ -53,7 +29,12 @@ class HomeViewModel: ObservableObject {
                     case .failure(let error):
                         self.viewModelDTO.reload(with: [])
                         self.viewModelDTO.isLoading = false
-                        self.viewModelDTO.conferencesListViewModel.emptyListMessage = error.localizedDescription
+                        switch error {
+                        case .networkError(let description):
+                            self.viewModelDTO.conferencesListViewModel.emptyListMessage = description
+                        default:
+                            self.viewModelDTO.conferencesListViewModel.emptyListMessage = error.localizedDescription
+                        }
                     case .finished:
                         self.viewModelDTO.isLoading = false
                         break
@@ -67,35 +48,17 @@ class HomeViewModel: ObservableObject {
             .store(in: &disposables)
     }
     
-    private func loadFavouriteConferences() {
-        conferenceRepository.favouriteConferencesPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] value in
-                    guard let self = self else { return }
-                    switch value {
-                    case .failure:
-                        self.viewModelDTO.reload(with: [])
-                        self.viewModelDTO.isLoading = false
-                    case .finished:
-                        self.viewModelDTO.isLoading = false
-                        break
-                    }
-                },
-                receiveValue: { [weak self] conferences in
-                    guard let self = self else { return }
-                    self.viewModelDTO.isLoading = false
-                    self.viewModelDTO.reload(with: conferences)
-            })
-            .store(in: &disposables)
+    func reload() {
+        viewModelDTO.isLoading = true
+        conferenceRepository.reload()
     }
 }
 
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
-        @Published var favouriteIconName: String = "star"
-        @Published var isLoading = false
+        @Published var isLoading = true
         var navigationBarTitle: String = "Swift Conferences"
+        var reloadIconName: String = "goforward"
         var conferencesListViewModel = ConferencesListViewModel()
         
         func reload(with conferences: [Conference]) {

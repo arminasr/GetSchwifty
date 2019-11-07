@@ -12,7 +12,21 @@ import SwiftConferencesAPIKit
 @available(iOS 13.0, *)
 public class ConferenceRepository: ConferenceRepositoryProtocol {
     
-    public init() {}
+    public init() {
+        reload()
+    }
+    
+    public var conferencesPublisher = PassthroughSubject<[Conference], ConferenceRepositoryError>()
+    
+    public func reload() {
+        localDataStore.swiftConferencesPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink {
+                $0.isEmpty ? self.refresh() : self.conferencesPublisher.send($0)
+                self.refresh()
+            }
+            .store(in: &disposables)
+    }
     
     private var disposables = Set<AnyCancellable>()
     private var remoteDataStore: RemoteConferencesDataStore {
@@ -23,42 +37,33 @@ public class ConferenceRepository: ConferenceRepositoryProtocol {
         UserDefaultsSwiftConferencesDataStore()
     }
     
-    public func conferencesPublisher() -> Future<[Conference], ConferenceRepositoryError> {
-        guard let locallyCachedConferences = localDataStore.getSwiftConferences() else {
-            return Future { promise in
-                self.remoteDataStore.getSwiftConferences()
-                    .receive(on: DispatchQueue.main)
-                    .sink(
-                        receiveCompletion: {
-                            switch $0 {
-                            case .failure(let error):
-                                promise(.failure(.networkError(error)))
-                            case .finished:
-                                break
-                            }
-                        },
-                        receiveValue: { [unowned self] in
-                            self.localDataStore.updateSwiftConferences($0)
-                            promise(.success($0))
-                        })
-                    .store(in: &self.disposables)
-            }
-        }
-
-        return Future { promise in
-            promise(.success(locallyCachedConferences))
-        }
-    }
-    
-    public func favouriteConferencesPublisher() -> Future<[Conference], ConferenceRepositoryError> {
-        guard let favouriteConferences = localDataStore.getFavouriteSwiftConferences() else {
-            return Future { promise in
-                promise(.failure(.favouriteConferencesDecodingError))
-            }
-        }
-
-        return Future { promise in
-            promise(.success(favouriteConferences))
-        }
+    func refresh() {
+        remoteDataStore.swiftConferencesPublisher()
+            .receive(on: DispatchQueue.main)
+            .retry(3)
+            .sink(
+                receiveCompletion: { [weak self] value in
+                    guard let self = self else { return }
+                    switch value {
+                    case .failure(let error):
+                        let networkErrorDescription: ConferenceRepositoryError
+                        switch error {
+                        case .fetchingError( _):
+                            networkErrorDescription = ConferenceRepositoryError.networkError("Fetching conferences failed. Check your internet connection.")
+                        case .urlError( _):
+                            networkErrorDescription = ConferenceRepositoryError.networkError("Fetching conferences failed. Wrong source.")
+                        }
+                        self.conferencesPublisher.send(completion: .failure(networkErrorDescription))
+                    case .finished:
+                        break
+                    }
+                },
+                receiveValue: { [weak self] conferences in
+                    guard let self = self else { return }
+                    self.localDataStore.updateSwiftConferences(conferences)
+                    self.conferencesPublisher.send(conferences)
+                }
+            )
+            .store(in: &disposables)
     }
 }

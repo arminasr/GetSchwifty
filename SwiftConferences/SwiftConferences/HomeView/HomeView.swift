@@ -23,17 +23,15 @@ struct HomeView: View {
             ActivityIndicator(isAnimating: $viewModel.viewModelDTO.isLoading, style: .large)
             NavigationView {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
-                    .navigationBarItems(trailing: Button(action: {
-                        guard self.viewModel.mode == .all else {
-                            self.viewModel.mode = .all
-                            return
+                    .navigationBarItems(
+                        trailing: Button(action: {
+                            self.viewModel.reload()
+                        }) {
+                            Image(systemName: viewModel.viewModelDTO.reloadIconName)
+                                .resizable()
+                                .frame(width: 22, height: 22)
                         }
-                        self.viewModel.mode = .favourite
-                    }) {
-                        Image(systemName: viewModel.viewModelDTO.favouriteIconName)
-                            .resizable()
-                            .frame(width: 22, height: 22)
-                    })
+                    )
                     .navigationBarTitle(
                         Text("\(viewModel.viewModelDTO.navigationBarTitle)")
                 )

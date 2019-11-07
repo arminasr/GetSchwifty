@@ -7,81 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F05D4FD3-A0F1-4E90-8FFB-83CDDA187F52"
+            uuid = "074E19F6-9296-468E-A996-4963A548CB24"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/ConferenceRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "conferencesPublisher()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "refresh()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D85E5E4A-5BC9-4C63-B216-9C87A6895799"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/ConferenceRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "favouriteConferencesPublisher()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F577CA05-BFB6-4E17-B4C9-04CD3EFC938C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../SwiftConferencesDataKit/Sources/SwiftConferencesDataKit/Repositories/ConferenceRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "favouriteConferencesPublisher()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1E42F055-783B-420E-BC36-CB0E138AEB50"
+            uuid = "531F66D9-E13B-4B49-8460-64A2DA021BF8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftConferences/HomeView/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "loadFavouriteConferences()"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "init(conferenceRepository:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6F5F5F9-3156-4C03-8FEA-7CFF44AA63A1"
+            uuid = "8F65E2C6-3535-4E80-9286-66110860DCC7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
-            condition = "$0.name == &quot;ServerSide.swift&quot;"
             continueAfterRunningActions = "No"
-            filePath = "SwiftConferences/HomeView/ConferencesListViewModel.swift"
+            filePath = "SwiftConferences/HomeView/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "getPastConferencesSection(from:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "init(conferenceRepository:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
