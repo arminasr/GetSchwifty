@@ -21,7 +21,7 @@ struct InfoView: View {
                          url: URL(string: "https://github.com/arminasr/GetSchwifty")!)
             Text("Contact me with any suggestions")
             .font(.caption)
-            SocialButton(title: "@arminasr",
+            SocialButton(title: "@arminas_r",
                          type: .twitter,
                          url: URL(string: "https://twitter.com/arminas_r")!)
             Text("GetSchwifty is inspired by CocoaConferences project. It contains the data used by GetSchwifty application.")
