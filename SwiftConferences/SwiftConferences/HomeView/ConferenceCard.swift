@@ -21,14 +21,6 @@ struct ConferenceCard: View {
                     .foregroundColor(Color(.systemPink))
                     .lineLimit(nil)
                 Spacer()
-//                Button(action: {
-//
-//                }) {
-//                    Image(systemName: cardViewModel.actionButtons.first(where: { $0.id == .favourite })!.iconName)
-//                        .resizable()
-//                        .frame(width: 22, height: 22)
-//                }
-//                .fixedSize()
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
@@ -42,7 +34,7 @@ struct ConferenceCard: View {
             }
             
             HStack(alignment: .top, spacing: 44) {
-                ForEach(cardViewModel.actionButtons.filter{ $0.id != .favourite }) { buttonModel in
+                ForEach(cardViewModel.actionButtons) { buttonModel in
                     Button(action: {
                         guard let url = buttonModel.url else {
                             return
@@ -68,7 +60,7 @@ struct ConferenceCard: View {
             }
         }
         .sheet(isPresented: $modalPresentationDetails.isPresented) {
-            WebView(url: self.modalPresentationDetails.url!)
+            ViewsFactory.webView(url: self.modalPresentationDetails.url!)
         }
         .padding()
         .background(Color(.systemGray6))

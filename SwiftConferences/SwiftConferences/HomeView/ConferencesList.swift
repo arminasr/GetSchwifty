@@ -20,7 +20,7 @@ struct ConferencesList: View {
     var body: some View {
         List {
             if !viewModel.emptyListMessage.isEmpty {
-                Text("\(viewModel.emptyListMessage)")
+                Text("\(viewModel.emptyListMessage)").font(.caption)
             }
             ForEach(viewModel.conferencesListSections) { section in
                 Section(header: Text("\(section.sectionName)")

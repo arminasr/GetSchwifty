@@ -23,7 +23,17 @@ class ConferencesListViewModel: ObservableObject {
         }
         conferencesListSections = mapToSections(conferences: conferences)
     }
-    
+}
+
+extension ConferencesListViewModel {
+    class Section: ObservableObject, Identifiable {
+        let id = UUID()
+        var sectionName: String = ""
+        var cards: [ConferenceCardViewModel] = []
+    }
+}
+
+extension ConferencesListViewModel {
     private func mapToSections(conferences: [Conference]) -> [Section] {
         return [getUpcommingConferencesSection(from: conferences), getPastConferencesSection(from: conferences)]
     }
@@ -80,14 +90,6 @@ class ConferencesListViewModel: ObservableObject {
             .map(ConferenceCardViewModel.init)
 
         return section
-    }
-}
-
-extension ConferencesListViewModel {
-    class Section: ObservableObject, Identifiable {
-        let id = UUID()
-        var sectionName: String = ""
-        var cards: [ConferenceCardViewModel] = []
     }
 }
 

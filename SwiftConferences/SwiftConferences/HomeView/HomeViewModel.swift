@@ -13,39 +13,13 @@ import SwiftConferencesDataKit
 class HomeViewModel: ObservableObject {
     
     @Published var viewModelDTO = HomeViewModelDTO()
-    
     private let conferenceRepository: ConferenceRepositoryProtocol
     private var disposables = Set<AnyCancellable>()
     
     init(conferenceRepository: ConferenceRepositoryProtocol) {
         self.conferenceRepository = conferenceRepository
-        
-        self.conferenceRepository.conferencesPublisher
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] value in
-                    guard let self = self else { return }
-                    switch value {
-                    case .failure(let error):
-                        self.viewModelDTO.reload(with: [])
-                        self.viewModelDTO.isLoading = false
-                        switch error {
-                        case .networkError(let description):
-                            self.viewModelDTO.conferencesListViewModel.emptyListMessage = description
-                        default:
-                            self.viewModelDTO.conferencesListViewModel.emptyListMessage = error.localizedDescription
-                        }
-                    case .finished:
-                        self.viewModelDTO.isLoading = false
-                        break
-                    }
-                },
-                receiveValue: { [weak self] conferences in
-                    guard let self = self else { return }
-                    self.viewModelDTO.isLoading = false
-                    self.viewModelDTO.reload(with: conferences)
-            })
-            .store(in: &disposables)
+        subscribeToConferencesPublisher()
+        subscribeToErrorPublisher()
     }
     
     func reload() {
@@ -56,13 +30,50 @@ class HomeViewModel: ObservableObject {
 
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
-        @Published var isLoading = true
+        @Published var isLoading = false
         var navigationBarTitle: String = "Swift Conferences"
         var reloadIconName: String = "goforward"
         var conferencesListViewModel = ConferencesListViewModel()
         
         func reload(with conferences: [Conference]) {
             conferencesListViewModel.reload(with: conferences)
+        }
+    }
+}
+
+extension HomeViewModel {
+    private func subscribeToConferencesPublisher() {
+        viewModelDTO.isLoading = true
+        self.conferenceRepository.conferencesPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] conferences in
+                guard let self = self else { return }
+                self.viewModelDTO.isLoading = false
+                if !conferences.isEmpty {
+                    self.viewModelDTO.reload(with: conferences)
+                }
+            }
+            .store(in: &disposables)
+    }
+    
+    private func subscribeToErrorPublisher() {
+        viewModelDTO.isLoading = true
+        self.conferenceRepository.conferencesRepositoryErrorPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                guard let self = self else { return }
+                self.viewModelDTO.isLoading = false
+                self.handleError(error)
+            }
+            .store(in: &disposables)
+    }
+    
+    private func handleError(_ error: ConferenceRepositoryError) {
+        switch error {
+        case .networkError(let description):
+            self.viewModelDTO.conferencesListViewModel.emptyListMessage = description
+        default:
+            self.viewModelDTO.conferencesListViewModel.emptyListMessage = error.localizedDescription
         }
     }
 }

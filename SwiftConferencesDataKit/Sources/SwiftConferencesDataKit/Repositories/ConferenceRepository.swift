@@ -12,21 +12,11 @@ import SwiftConferencesAPIKit
 @available(iOS 13.0, *)
 public class ConferenceRepository: ConferenceRepositoryProtocol {
     
-    public init() {
-        reload()
-    }
+    public var conferencesPublisher: AnyPublisher<[Conference], Never>
+    public var conferencesRepositoryErrorPublisher: AnyPublisher<ConferenceRepositoryError, Never>
     
-    public var conferencesPublisher = PassthroughSubject<[Conference], ConferenceRepositoryError>()
-    
-    public func reload() {
-        localDataStore.swiftConferencesPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink {
-                $0.isEmpty ? self.refresh() : self.conferencesPublisher.send($0)
-                self.refresh()
-            }
-            .store(in: &disposables)
-    }
+    private var conferencesSubject = PassthroughSubject<[Conference], Never>()
+    public var conferencesRepositoryErrorSubject = PassthroughSubject<ConferenceRepositoryError, Never>()
     
     private var disposables = Set<AnyCancellable>()
     private var remoteDataStore: RemoteConferencesDataStore {
@@ -37,33 +27,44 @@ public class ConferenceRepository: ConferenceRepositoryProtocol {
         UserDefaultsSwiftConferencesDataStore()
     }
     
-    func refresh() {
-        remoteDataStore.swiftConferencesPublisher()
+    
+    public init() {
+        conferencesPublisher = conferencesSubject.eraseToAnyPublisher()
+        conferencesRepositoryErrorPublisher = conferencesRepositoryErrorSubject.eraseToAnyPublisher()
+        reload()
+    }
+    
+    public func reload() {
+        localDataStore.swiftConferencesPublisher()
             .receive(on: DispatchQueue.main)
-            .retry(3)
-            .sink(
-                receiveCompletion: { [weak self] value in
-                    guard let self = self else { return }
-                    switch value {
-                    case .failure(let error):
-                        let networkErrorDescription: ConferenceRepositoryError
-                        switch error {
-                        case .fetchingError( _):
-                            networkErrorDescription = ConferenceRepositoryError.networkError("Fetching conferences failed. Check your internet connection.")
-                        case .urlError( _):
-                            networkErrorDescription = ConferenceRepositoryError.networkError("Fetching conferences failed. Wrong source.")
-                        }
-                        self.conferencesPublisher.send(completion: .failure(networkErrorDescription))
-                    case .finished:
-                        break
-                    }
-                },
-                receiveValue: { [weak self] conferences in
-                    guard let self = self else { return }
-                    self.localDataStore.updateSwiftConferences(conferences)
-                    self.conferencesPublisher.send(conferences)
+            .sink {
+                $0.isEmpty ? self.refresh() : self.conferencesSubject.send($0)
+                self.refresh()
+            }
+            .store(in: &disposables)
+    }
+    
+    func refresh() {        
+        remoteDataStore.swiftConferencesPublisher()
+            .tryMap { conferences -> [Conference] in
+                guard !conferences.isEmpty else {
+                    throw RemoteSwiftConferencesDataStoreError.fetchingError
                 }
-            )
+                return conferences
+            }
+            .catch { error -> Just<[Conference]> in
+                let networkError = ConferenceRepositoryError.networkError("Refreshing failed. Check internet connection. 💩")
+                self.conferencesRepositoryErrorSubject.send(networkError)
+                return Just([])
+            }
+            .sink {
+                if !$0.isEmpty {
+                    self.localDataStore.updateSwiftConferences($0)
+                    self.conferencesSubject.send($0)
+                }
+            }
             .store(in: &disposables)
     }
 }
+
+

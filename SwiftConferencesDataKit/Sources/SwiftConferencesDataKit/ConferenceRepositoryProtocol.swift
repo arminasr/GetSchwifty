@@ -10,12 +10,11 @@ import Combine
 
 public enum ConferenceRepositoryError: Error {
     case networkError(String)
-    case favouriteConferencesDecodingError
 }
 
 @available(iOS 13.0, *)
 public protocol ConferenceRepositoryProtocol {
-    var conferencesPublisher: PassthroughSubject<[Conference], ConferenceRepositoryError> { get }
+    var conferencesPublisher: AnyPublisher<[Conference], Never> { get }
+    var conferencesRepositoryErrorPublisher: AnyPublisher<ConferenceRepositoryError, Never> { get }
     func reload()
-    //func favouriteConferencesPublisher() -> AnyPublisher<[Conference], ConferenceRepositoryError>
 }

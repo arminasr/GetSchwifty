@@ -14,8 +14,7 @@ import SwiftUI
 
 struct Coordinator {
     private let window: UIWindow
-    @State private var presentWebViewOnHomeView = true
-    var homeView: HomeView
+    private var homeView: HomeView
     
     init(scene: UIWindowScene) {
         self.window = UIWindow(windowScene: scene)
@@ -25,18 +24,6 @@ struct Coordinator {
     }
     
     private mutating func coordinateToHomeView() {
-        var conferenceRepository: ConferenceRepositoryProtocol {
-            ConferenceRepository()
-        }
         window.rootViewController = UIHostingController(rootView: homeView)
-    }
-}
-
-protocol HomeViewCoordinating {
-    func toggleWebViewPresentation(for url: URL)
-}
-
-extension Coordinator: HomeViewCoordinating {
-    func toggleWebViewPresentation(for url: URL) {
     }
 }

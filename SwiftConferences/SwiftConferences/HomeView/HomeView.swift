@@ -20,7 +20,6 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            ActivityIndicator(isAnimating: $viewModel.viewModelDTO.isLoading, style: .large)
             NavigationView {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
                     .navigationBarItems(
@@ -36,6 +35,7 @@ struct HomeView: View {
                         Text("\(viewModel.viewModelDTO.navigationBarTitle)")
                 )
             }
+            ActivityIndicator(isAnimating: $viewModel.viewModelDTO.isLoading, style: .large)
         }
     }
 }

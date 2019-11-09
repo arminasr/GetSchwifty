@@ -12,7 +12,4 @@ import Combine
 public protocol LocalConferencesDataStore {
     func swiftConferencesPublisher() -> AnyPublisher<[Conference], Never>
     func updateSwiftConferences(_ conferences: [Conference])
-    
-    func favouriteSwiftConferencesPublisher() -> AnyPublisher<[Conference], Never>
-    func updateFavouriteSwiftConferences(_ conferences: [Conference])
 }

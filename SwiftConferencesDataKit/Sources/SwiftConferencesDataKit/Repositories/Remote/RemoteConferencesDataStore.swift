@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 public enum RemoteSwiftConferencesDataStoreError: Error {
-    case urlError(String)
-    case fetchingError(String)
+    case urlError
+    case fetchingError
 }
 
 @available(iOS 13.0, *)

@@ -41,7 +41,7 @@ class ConferenceCardViewModel: Identifiable {
     }
     
     var actionButtons: [ActionButtonModel] {
-        return [websiteButtonModel, favouritesButtonModel, cfpButtonModel].compactMap{ $0 }
+        return [websiteButtonModel, cfpButtonModel].compactMap{ $0 }
     }
     
     private var websiteButtonModel: ActionButtonModel? {
@@ -53,18 +53,6 @@ class ConferenceCardViewModel: Identifiable {
                                  text: "Website",
                                  isActive: true,
                                  url: link)
-    }
-    
-    private var favouritesButtonModel: ActionButtonModel? {
-        guard conference.link != nil else {
-            return nil
-        }
-        let image = isFavourite ? "star.fill" : "star"
-        let text = isFavourite ? "Unfavourite" : "Favourite"
-        return ActionButtonModel(id: .favourite,
-                                 iconName: image,
-                                 text: text,
-                                 isActive: true)
     }
     
     private var cfpButtonModel: ActionButtonModel? {
@@ -92,12 +80,6 @@ class ConferenceCardViewModel: Identifiable {
         }
         return nil
     }
-    
-    // TODO: implement isFavourite state tracking
-    
-    private var isFavourite: Bool {
-        return false
-    }
 }
 
 extension ConferenceCardViewModel {
@@ -105,8 +87,7 @@ extension ConferenceCardViewModel {
         
         enum ButtonType: Int {
             case website = 0
-            case favourite = 1
-            case cfp = 2
+            case cfp = 1
         }
         
         let id: ButtonType
@@ -115,8 +96,6 @@ extension ConferenceCardViewModel {
         let isActive: Bool
         var url: URL? = nil
     }
-    
-
 }
 extension ConferenceCardViewModel.ActionButtonModel.ButtonType: Identifiable {
     var id: Int { rawValue }

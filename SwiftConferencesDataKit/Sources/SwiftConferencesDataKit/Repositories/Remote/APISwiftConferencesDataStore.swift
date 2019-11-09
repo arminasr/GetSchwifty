@@ -27,20 +27,20 @@ class APISwiftConferencesDataStore: RemoteConferencesDataStore {
                 String(decoding: $0, as: UTF8.self)
             }
             .decode(type: [Conference].self, decoder: YAMLDecoder())
-            .catch {
-                Fail(error: .fetchingError("Remote fetching failed: \($0.localizedDescription)"))
+            .catch {_ in
+                Fail(error: .fetchingError)
             }
             .eraseToAnyPublisher()
     }
     
     private func getEntity(_ entity: Entity) -> AnyPublisher<Data, RemoteSwiftConferencesDataStoreError> {
         guard let url = getUrl(for: .SwiftConference) else {
-            return Fail(error: .urlError("URL building error: \(baseURLString + entity.endPoint)")).eraseToAnyPublisher()
+            return Fail(error: .urlError).eraseToAnyPublisher()
         }
         
         return apiClient.getData(atURL: url)
-            .catch {
-                Fail(error: .fetchingError("Remote fetching failed: \($0.localizedDescription)"))
+            .catch {_ in
+                Fail(error: .fetchingError)
             }
             .eraseToAnyPublisher()
     }
