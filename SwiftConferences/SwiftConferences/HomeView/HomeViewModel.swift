@@ -72,8 +72,6 @@ extension HomeViewModel {
         switch error {
         case .networkError(let description):
             self.viewModelDTO.conferencesListViewModel.emptyListMessage = description
-        default:
-            self.viewModelDTO.conferencesListViewModel.emptyListMessage = error.localizedDescription
         }
     }
 }

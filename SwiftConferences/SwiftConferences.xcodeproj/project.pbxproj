@@ -52,7 +52,7 @@
 		427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesListViewModel.swift; sourceTree = "<group>"; };
 		42886F872368BD8900D99992 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		42886F89236C23E200D99992 /* SwiftConferences.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftConferences.entitlements; sourceTree = "<group>"; };
-		4296EC2C233B1A7000F93FB3 /* Get Swifty!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get Swifty!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4296EC2C233B1A7000F93FB3 /* Get Schwifty!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get Schwifty!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4296EC33233B1A7000F93FB3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 		4296EC2D233B1A7000F93FB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4296EC2C233B1A7000F93FB3 /* Get Swifty!.app */,
+				4296EC2C233B1A7000F93FB3 /* Get Schwifty!.app */,
 				4296EC42233B1A7200F93FB3 /* SwiftConferencesTests.xctest */,
 			);
 			name = Products;
@@ -195,7 +195,7 @@
 				427E4AE8233F50CF00732BB2 /* SwiftConferencesDataKit */,
 			);
 			productName = iOSConferences;
-			productReference = 4296EC2C233B1A7000F93FB3 /* Get Swifty!.app */;
+			productReference = 4296EC2C233B1A7000F93FB3 /* Get Schwifty!.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4296EC41233B1A7200F93FB3 /* SwiftConferencesTests */ = {
@@ -455,7 +455,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.arminasr.SwiftConferences;
-				PRODUCT_NAME = "Get Swifty!";
+				PRODUCT_NAME = "Get Schwifty!";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,7 +477,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.arminasr.SwiftConferences;
-				PRODUCT_NAME = "Get Swifty!";
+				PRODUCT_NAME = "Get Schwifty!";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
