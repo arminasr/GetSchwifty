@@ -18,4 +18,8 @@ struct ViewsFactory {
     static func webView(url: URL) -> some View {
         return WebView(url: url)
     }
+    
+    static func infoView() -> some View {
+        return InfoView()
+    }
 }

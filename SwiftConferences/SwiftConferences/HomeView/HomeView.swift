@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @ObservedObject private var viewModel: HomeViewModel
     @ObservedObject private var viewModelDTO: HomeViewModel.HomeViewModelDTO
+    @State private var infoViewPresented: Bool = false
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -23,12 +24,22 @@ struct HomeView: View {
             NavigationView {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
                     .navigationBarItems(
+                        leading: Button(action: {
+                            self.infoViewPresented.toggle()
+                        }) {
+                            Image(systemName: viewModel.viewModelDTO.infoIconName)
+                                .resizable()
+                                .frame(width: 22, height: 22)
+                        },
                         trailing: Button(action: {
                             self.viewModel.reload()
                         }) {
                             Image(systemName: viewModel.viewModelDTO.reloadIconName)
                                 .resizable()
                                 .frame(width: 22, height: 22)
+                        }
+                        .sheet(isPresented: $infoViewPresented) {
+                            ViewsFactory.infoView()
                         }
                     )
                     .navigationBarTitle(

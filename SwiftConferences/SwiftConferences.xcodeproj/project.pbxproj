@@ -26,6 +26,8 @@
 		4296EC3C233B1A7200F93FB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4296EC3A233B1A7200F93FB3 /* LaunchScreen.storyboard */; };
 		4296EC47233B1A7200F93FB3 /* iOSConferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC46233B1A7200F93FB3 /* iOSConferencesTests.swift */; };
 		42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DBEE1A23520854003D374D /* Date+Midnight.swift */; };
+		42FA8D502376E0FF00813407 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FA8D4F2376E0FF00813407 /* InfoView.swift */; };
+		42FA8D522376E43E00813407 /* SocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FA8D512376E43E00813407 /* SocialButton.swift */; };
 		C40B14E4235997FE00891E40 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B14E3235997FE00891E40 /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		4296EC46233B1A7200F93FB3 /* iOSConferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSConferencesTests.swift; sourceTree = "<group>"; };
 		4296EC48233B1A7200F93FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DBEE1A23520854003D374D /* Date+Midnight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Midnight.swift"; sourceTree = "<group>"; };
+		42FA8D4F2376E0FF00813407 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		42FA8D512376E43E00813407 /* SocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		C40B14E3235997FE00891E40 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +151,8 @@
 				4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */,
 				427E4AF32344545600732BB2 /* ViewsFactory.swift */,
 				422D32D9235CB5000037CAEE /* WebView.swift */,
+				42FA8D4F2376E0FF00813407 /* InfoView.swift */,
+				42FA8D512376E43E00813407 /* SocialButton.swift */,
 				427E4AEA2343009400732BB2 /* HomeView */,
 				427E4AF0234303D200732BB2 /* Utilities */,
 				4296EC35233B1A7200F93FB3 /* Assets.xcassets */,
@@ -291,7 +297,9 @@
 				427E4AF42344545600732BB2 /* ViewsFactory.swift in Sources */,
 				427E4AEF234301E200732BB2 /* ConferenceCardViewModel.swift in Sources */,
 				427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */,
+				42FA8D522376E43E00813407 /* SocialButton.swift in Sources */,
 				42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */,
+				42FA8D502376E0FF00813407 /* InfoView.swift in Sources */,
 				422D32DA235CB5000037CAEE /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,7 +462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arminasr.SwiftConferences;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arminasr.GetSchwifty;
 				PRODUCT_NAME = "Get Schwifty!";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -476,7 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arminasr.SwiftConferences;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arminasr.GetSchwifty;
 				PRODUCT_NAME = "Get Schwifty!";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
