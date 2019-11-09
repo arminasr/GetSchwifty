@@ -31,7 +31,7 @@ class HomeViewModel: ObservableObject {
 extension HomeViewModel {
     class HomeViewModelDTO: ObservableObject {
         @Published var isLoading = false
-        var navigationBarTitle: String = "Swift Conferences"
+        var navigationBarTitle: String = "Schwifty Conferences"
         var infoIconName: String = "info.circle"
         var reloadIconName: String = "goforward"
         var conferencesListViewModel = ConferencesListViewModel()
