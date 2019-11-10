@@ -1,6 +1,6 @@
 //
 //  GithubButton.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas on 2019-11-09.
 //  Copyright © 2019 Arminas. All rights reserved.

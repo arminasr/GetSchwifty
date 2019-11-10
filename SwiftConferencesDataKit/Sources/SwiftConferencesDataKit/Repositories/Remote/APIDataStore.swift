@@ -11,7 +11,7 @@ import Combine
 import Yams
 
 @available(iOS 13.0, *)
-class APISwiftConferencesDataStore: RemoteConferencesDataStore {
+class APIDataStore: RemoteDataStore {
     
     private let apiClient: APIClient
     private let baseURLString: String
@@ -21,8 +21,8 @@ class APISwiftConferencesDataStore: RemoteConferencesDataStore {
         self.baseURLString = baseURLString
     }
     
-    func swiftConferencesPublisher() -> AnyPublisher<[Conference], RemoteSwiftConferencesDataStoreError> {
-        return getEntity(.SwiftConference)
+    func conferencesPublisher() -> AnyPublisher<[Conference], RemoteDataStoreError> {
+        return getEntity(.conference)
             .map {
                 String(decoding: $0, as: UTF8.self)
             }
@@ -33,8 +33,8 @@ class APISwiftConferencesDataStore: RemoteConferencesDataStore {
             .eraseToAnyPublisher()
     }
     
-    private func getEntity(_ entity: Entity) -> AnyPublisher<Data, RemoteSwiftConferencesDataStoreError> {
-        guard let url = getUrl(for: .SwiftConference) else {
+    private func getEntity(_ entity: Entity) -> AnyPublisher<Data, RemoteDataStoreError> {
+        guard let url = getUrl(for: .conference) else {
             return Fail(error: .urlError).eraseToAnyPublisher()
         }
         
@@ -51,10 +51,10 @@ class APISwiftConferencesDataStore: RemoteConferencesDataStore {
     }
     
     private enum Entity {
-        case SwiftConference
+        case conference
         var endPoint: String {
             switch self {
-            case .SwiftConference:
+            case .conference:
                 return "/conferences.yml"
             }
         }

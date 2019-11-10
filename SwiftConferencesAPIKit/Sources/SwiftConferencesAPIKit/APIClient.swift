@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 
-public enum SwiftConferencesAPIError: Error, LocalizedError {
+public enum APIError: Error, LocalizedError {
     case responseError(Int)
     case error(String)
     case genericError
@@ -29,5 +29,5 @@ public enum SwiftConferencesAPIError: Error, LocalizedError {
 
 @available(iOS 13.0, *)
 public protocol APIClient {
-    func getData(atURL url: URL) -> Future<Data, SwiftConferencesAPIError>
+    func getData(atURL url: URL) -> Future<Data, APIError>
 }

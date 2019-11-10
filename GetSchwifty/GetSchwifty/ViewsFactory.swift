@@ -1,6 +1,6 @@
 //
 //  HomeViewFactory.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas on 2019-10-02.
 //  Copyright © 2019 Arminas. All rights reserved.
@@ -11,7 +11,7 @@ import SwiftConferencesDataKit
 
 struct ViewsFactory {
     static func homeView() -> some View {
-        let viewModel = HomeViewModel(conferenceRepository: ConferenceRepository())
+        let viewModel = HomeViewModel(conferenceRepository: Repository())
         return HomeView(viewModel: viewModel)
     }
     

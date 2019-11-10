@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-public enum ConferenceRepositoryError: Error {
+public enum RepositoryError: Error {
     case networkError(String)
 }
 
 @available(iOS 13.0, *)
-public protocol ConferenceRepositoryProtocol {
+public protocol RepositoryProtocol {
     var conferencesPublisher: AnyPublisher<[Conference], Never> { get }
-    var conferencesRepositoryErrorPublisher: AnyPublisher<ConferenceRepositoryError, Never> { get }
+    var repositoryErrorPublisher: AnyPublisher<RepositoryError, Never> { get }
     func reload()
 }

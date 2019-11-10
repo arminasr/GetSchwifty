@@ -1,6 +1,6 @@
 //
 //  ActivityIndicator.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas on 2019-10-29.
 //  Copyright © 2019 Arminas. All rights reserved.

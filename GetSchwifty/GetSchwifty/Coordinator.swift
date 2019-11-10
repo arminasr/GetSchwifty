@@ -1,6 +1,6 @@
 //
 //  Coordinator.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas Ruzgas on 18/10/2019.
 //  Copyright © 2019 Arminas. All rights reserved.

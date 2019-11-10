@@ -1,6 +1,6 @@
 //
 //  Date+Midnight.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas on 2019-10-12.
 //  Copyright © 2019 Arminas. All rights reserved.

@@ -10,32 +10,32 @@ import Combine
 import SwiftConferencesAPIKit
 
 @available(iOS 13.0, *)
-public class ConferenceRepository: ConferenceRepositoryProtocol {
+public class Repository: RepositoryProtocol {
     
     public var conferencesPublisher: AnyPublisher<[Conference], Never>
-    public var conferencesRepositoryErrorPublisher: AnyPublisher<ConferenceRepositoryError, Never>
+    public var repositoryErrorPublisher: AnyPublisher<RepositoryError, Never>
     
     private var conferencesSubject = PassthroughSubject<[Conference], Never>()
-    public var conferencesRepositoryErrorSubject = PassthroughSubject<ConferenceRepositoryError, Never>()
+    public var conferencesRepositoryErrorSubject = PassthroughSubject<RepositoryError, Never>()
     
     private var disposables = Set<AnyCancellable>()
-    private var remoteDataStore: RemoteConferencesDataStore {
-        APISwiftConferencesDataStore(apiClient: BaseAPIClient(),
+    private var remoteDataStore: RemoteDataStore {
+        APIDataStore(apiClient: BaseAPIClient(),
                                      baseURLString: "https://raw.githubusercontent.com/Lascorbe/CocoaConferences/master/_data/")
     }
-    private var localDataStore: LocalConferencesDataStore {
-        UserDefaultsSwiftConferencesDataStore()
+    private var localDataStore: LocalDataStore {
+        UserDefaultsDataStore()
     }
     
     
     public init() {
         conferencesPublisher = conferencesSubject.eraseToAnyPublisher()
-        conferencesRepositoryErrorPublisher = conferencesRepositoryErrorSubject.eraseToAnyPublisher()
+        repositoryErrorPublisher = conferencesRepositoryErrorSubject.eraseToAnyPublisher()
         reload()
     }
     
     public func reload() {
-        localDataStore.swiftConferencesPublisher()
+        localDataStore.conferencesPublisher()
             .receive(on: DispatchQueue.main)
             .sink {
                 $0.isEmpty ? self.refresh() : self.conferencesSubject.send($0)
@@ -45,21 +45,21 @@ public class ConferenceRepository: ConferenceRepositoryProtocol {
     }
     
     func refresh() {        
-        remoteDataStore.swiftConferencesPublisher()
+        remoteDataStore.conferencesPublisher()
             .tryMap { conferences -> [Conference] in
                 guard !conferences.isEmpty else {
-                    throw RemoteSwiftConferencesDataStoreError.fetchingError
+                    throw RemoteDataStoreError.fetchingError
                 }
                 return conferences
             }
             .catch { error -> Just<[Conference]> in
-                let networkError = ConferenceRepositoryError.networkError("Refreshing failed. Check internet connection. 💩")
+                let networkError = RepositoryError.networkError("Refreshing failed. Check internet connection. 💩")
                 self.conferencesRepositoryErrorSubject.send(networkError)
                 return Just([])
             }
             .sink {
                 if !$0.isEmpty {
-                    self.localDataStore.updateSwiftConferences($0)
+                    self.localDataStore.updateConferences($0)
                     self.conferencesSubject.send($0)
                 }
             }

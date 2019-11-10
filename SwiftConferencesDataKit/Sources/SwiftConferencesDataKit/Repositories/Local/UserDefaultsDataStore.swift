@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-class UserDefaultsSwiftConferencesDataStore: LocalConferencesDataStore {
+class UserDefaultsDataStore: LocalDataStore {
     private let stored = UserDefaults.standard
     private let recordsKey = "UserDefaultsConferenceRecords"
     
-    func swiftConferencesPublisher() -> AnyPublisher<[Conference], Never> {
+    func conferencesPublisher() -> AnyPublisher<[Conference], Never> {
         guard let data = stored.value(forKey: recordsKey) as? Data else {
             return Just([]).eraseToAnyPublisher()
         }
@@ -22,7 +22,7 @@ class UserDefaultsSwiftConferencesDataStore: LocalConferencesDataStore {
         return Just(conferences).eraseToAnyPublisher()
     }
     
-    func updateSwiftConferences(_ conferences: [Conference]) {
+    func updateConferences(_ conferences: [Conference]) {
         guard !conferences.isEmpty else {
             return
         }

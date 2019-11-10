@@ -1,6 +1,6 @@
 //
 //  ConferenceCard.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas on 2019-09-25.
 //  Copyright © 2019 Arminas. All rights reserved.

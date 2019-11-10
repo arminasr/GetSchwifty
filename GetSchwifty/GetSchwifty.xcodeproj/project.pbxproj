@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		422D32DA235CB5000037CAEE /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422D32D9235CB5000037CAEE /* WebView.swift */; };
 		42436170233B20E600DC26FA /* ConferenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243616F233B20E600DC26FA /* ConferenceCard.swift */; };
+		4279C2AD23782F8F007FF75B /* tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4279C2AC23782F8F007FF75B /* tests.swift */; };
 		427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */; };
 		427E4AE2233F4C9C00732BB2 /* SwiftConferencesAPIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 427E4AE1233F4C9C00732BB2 /* SwiftConferencesAPIKit */; };
 		427E4AE9233F50CF00732BB2 /* SwiftConferencesDataKit in Frameworks */ = {isa = PBXBuildFile; productRef = 427E4AE8233F50CF00732BB2 /* SwiftConferencesDataKit */; };
@@ -45,6 +46,7 @@
 		4243616F233B20E600DC26FA /* ConferenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCard.swift; sourceTree = "<group>"; };
 		42436175233DBDB200DC26FA /* SwiftConferencesAPIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftConferencesAPIKit; path = ../SwiftConferencesAPIKit; sourceTree = "<group>"; };
 		425053E623781E2700E17F20 /* GetSchwiftyTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GetSchwiftyTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		4279C2AC23782F8F007FF75B /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 		427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesList.swift; sourceTree = "<group>"; };
 		427E4AE7233F50C100732BB2 /* SwiftConferencesDataKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftConferencesDataKit; path = ../SwiftConferencesDataKit; sourceTree = "<group>"; };
 		427E4AEC234300D700732BB2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				4296EC48233B1A7200F93FB3 /* Info.plist */,
+				4279C2AC23782F8F007FF75B /* tests.swift */,
 				425053E623781E2700E17F20 /* GetSchwiftyTests-Bridging-Header.h */,
 			);
 			path = GetSchwiftyTests;
@@ -308,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4279C2AD23782F8F007FF75B /* tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

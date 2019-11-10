@@ -1,6 +1,6 @@
 //
 //  HomeViewModel.swift
-//  SwiftConferences
+//  GetSchwifty
 //
 //  Created by Arminas on 2019-10-01.
 //  Copyright © 2019 Arminas. All rights reserved.
@@ -13,10 +13,10 @@ import SwiftConferencesDataKit
 class HomeViewModel: ObservableObject {
     
     @Published var viewModelDTO = HomeViewModelDTO()
-    private let conferenceRepository: ConferenceRepositoryProtocol
+    private let conferenceRepository: RepositoryProtocol
     private var disposables = Set<AnyCancellable>()
     
-    init(conferenceRepository: ConferenceRepositoryProtocol) {
+    init(conferenceRepository: RepositoryProtocol) {
         self.conferenceRepository = conferenceRepository
         subscribeToConferencesPublisher()
         subscribeToErrorPublisher()
@@ -59,7 +59,7 @@ extension HomeViewModel {
     
     private func subscribeToErrorPublisher() {
         viewModelDTO.isLoading = true
-        self.conferenceRepository.conferencesRepositoryErrorPublisher
+        self.conferenceRepository.repositoryErrorPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 guard let self = self else { return }
@@ -69,7 +69,7 @@ extension HomeViewModel {
             .store(in: &disposables)
     }
     
-    private func handleError(_ error: ConferenceRepositoryError) {
+    private func handleError(_ error: RepositoryError) {
         switch error {
         case .networkError(let description):
             self.viewModelDTO.conferencesListViewModel.emptyListMessage = description
