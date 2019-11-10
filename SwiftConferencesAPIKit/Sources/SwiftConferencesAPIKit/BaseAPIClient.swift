@@ -13,7 +13,7 @@ public class BaseAPIClient: APIClient {
     
     public init(){}
     
-    public func getData(atURL url: URL) -> Future<Data, SwiftConferencesAPIError> {
+    public func getData(atURL url: URL) -> Future<Data, APIError> {
         let session = URLSession.shared
         return Future { promise in
             let task = session.dataTask(with: url) { data, response, error in
