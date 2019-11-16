@@ -16,13 +16,15 @@ enum SocialButtonType {
 struct SocialButton: View {
     private var title: String
     private var url: URL
+    private var appURL: URL? = nil
     private var type: SocialButtonType
     @State private var webViewPresented: Bool = false
     
-    init(title: String, type: SocialButtonType, url: URL) {
+    init(title: String, type: SocialButtonType, url: URL, appURL: URL? = nil) {
         self.title = title
         self.type = type
         self.url = url
+        self.appURL = appURL
     }
     
     private var iconImage: Image {
@@ -36,7 +38,15 @@ struct SocialButton: View {
     
     var body: some View {
         Button(action: {
-            self.webViewPresented.toggle()
+            guard let appURL = self.appURL else {
+                self.webViewPresented.toggle()
+                return
+            }
+            if UIApplication.shared.canOpenURL(appURL) {
+                UIApplication.shared.open(appURL)
+            } else {
+                self.webViewPresented.toggle()
+            }
         }) {
             HStack {
                 iconImage

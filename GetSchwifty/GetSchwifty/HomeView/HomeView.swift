@@ -46,6 +46,7 @@ struct HomeView: View {
                         Text("\(viewModel.viewModelDTO.navigationBarTitle)")
                 )
             }
+            .accentColor(Color(.systemPink))
             ActivityIndicator(isAnimating: $viewModel.viewModelDTO.isLoading, style: .large)
         }
     }

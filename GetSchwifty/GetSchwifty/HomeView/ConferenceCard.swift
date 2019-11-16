@@ -59,13 +59,13 @@ struct ConferenceCard: View {
                 }
             }
         }
+            
         .sheet(isPresented: $modalPresentationDetails.isPresented) {
             ViewsFactory.webView(url: self.modalPresentationDetails.url!)
         }
         .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(30)
-        .shadow(color: Color(.systemGray2), radius: 4, x: 0, y: 2)
+        .background(LinearGradient(gradient: Gradient(colors: [Color(.systemPink).opacity(0.15), Color(.systemBlue).opacity(0.15)]), startPoint: .top, endPoint: .bottom))
+        .cornerRadius(20)
         .buttonStyle(BorderlessButtonStyle())
         .accentColor(Color(.systemPink))
     }

@@ -23,7 +23,8 @@ struct InfoView: View {
             .font(.caption)
             SocialButton(title: "@arminas_r",
                          type: .twitter,
-                         url: URL(string: "https://twitter.com/arminas_r")!)
+                         url: URL(string: "https://twitter.com/arminas_r")!,
+                         appURL: URL(string: "twitter://user?screen_name=arminas_r")!)
             Text("GetSchwifty is inspired by CocoaConferences project. It contains the data used by GetSchwifty application.")
                 .font(.caption)
                 .padding(.top)
