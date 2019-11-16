@@ -1,8 +1,6 @@
 ![alt text](https://raw.githubusercontent.com/arminasr/GetSchwifty/master/banner.png)
 
-iOS application for Swift, Cocoa, iOS & macOS community providing a list of conferences.
-This is an experimental project which main intend was to try out Swift Packege Manager (SPM) and learn a bit about SwiftUI and Combine frameworks provided by Apple.
-Turns out this application could be useful for community 🙃.
+iOS application for Swift, Cocoa, iOS & macOS community providing a list of conferences. This is an experimental project whose main intent was to try out Swift Package Manager (SPM) and learn a bit about SwiftUI and Combine frameworks provided by Apple. Turns out this application could be useful for the community 🙃.
 
 ## Download the Get Schwifty! from the App Store
 // TODO: AppStore link
