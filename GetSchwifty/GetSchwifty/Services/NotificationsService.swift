@@ -30,12 +30,15 @@ class NotificationsService: NSObject {
         let request = UNNotificationRequest(identifier: "LocalNotifications",
                                             content: notificationContent,
                                             trigger: notificationTrigger)
-        setNotificationActions(request, conference)
+        UNUserNotificationCenter.current().add(request) { error in
+            print("Error: \(String(describing: error?.localizedDescription))")
+        }
     }
     
     private func getNotificationContent(_ notificationType: NotificationsService.NotificationType, _ conference: Conference) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = getTitle(for: notificationType, conference: conference)
+        content.subtitle = getSubtitle(for: notificationType, conference: conference)
         content.body = getBody(for: notificationType, conference: conference)
         content.sound = UNNotificationSound.default
         
@@ -58,28 +61,17 @@ class NotificationsService: NSObject {
                                              repeats: false)
     }
     
-    private func setNotificationActions(_ request: UNNotificationRequest, _ conference: Conference) {
-        UNUserNotificationCenter.current().add(request) { error in
-            print("Error: \(String(describing: error?.localizedDescription))")
-        }
-        
-        let moreInfoAction = UNNotificationAction(identifier: "MoreInfo",
-                                                  title: "More about \(conference.name)",
-            options: [.foreground])
-        let deleteAction = UNNotificationAction(identifier: "Delete",
-                                                title: "Delete",
-                                                options: [.destructive])
-        let category = UNNotificationCategory(identifier: "Actions",
-                                              actions: [moreInfoAction, deleteAction],
-                                              intentIdentifiers: [],
-                                              options: [])
-        UNUserNotificationCenter.current().setNotificationCategories([category])
-    }
-    
     private func getTitle(for notificationWithType: NotificationType, conference: Conference) -> String {
         switch notificationWithType {
         case .conferenceStarting:
             return "\(conference.name) starting!"
+        }
+    }
+    
+    private func getSubtitle(for notificationWithType: NotificationType, conference: Conference) -> String {
+        switch notificationWithType {
+        case .conferenceStarting:
+            return "\(conference.location ?? "")"
         }
     }
     
