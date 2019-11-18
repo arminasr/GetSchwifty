@@ -10,12 +10,7 @@ import Foundation
 import UserNotifications
 import SwiftConferencesDataKit
 
-class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
-    
-    override init() {
-        super.init()
-        UNUserNotificationCenter.current().delegate = self
-    }
+class NotificationsService: NSObject {
     
     enum NotificationType {
         case conferenceStarting
@@ -31,22 +26,11 @@ class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
         guard let notificationTrigger = getNotificationTrigger(for: conference) else {
             return
         }
-        
-        let identifier = "Local Notification"
-        let request = UNNotificationRequest(identifier: identifier,
+
+        let request = UNNotificationRequest(identifier: "LocalNotifications",
                                             content: notificationContent,
                                             trigger: notificationTrigger)
-
-        UNUserNotificationCenter.current().add(request) { error in
-            print("Error: \(String(describing: error?.localizedDescription))")
-        }
-        
-        let snoozeAction = UNNotificationAction(identifier: "MoreInfo", title: "More about \(conference.name)", options: [.foreground])
-        let deleteAction = UNNotificationAction(identifier: "Delete", title: "Delete", options: [.destructive])
-        //let category = UNNotificationCategory(identifier: userActions, actions: [snoozeAction, deleteAction], intentIdentifiers: [], options: [])
-        
-        //notificationCenter.setNotificationCategories([category])
-
+        setNotificationActions(request, conference)
     }
     
     private func getNotificationContent(_ notificationType: NotificationsService.NotificationType, _ conference: Conference) -> UNMutableNotificationContent {
@@ -72,6 +56,24 @@ class NotificationsService: NSObject, UNUserNotificationCenterDelegate {
                                                           from: startDate)
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
+    }
+    
+    private func setNotificationActions(_ request: UNNotificationRequest, _ conference: Conference) {
+        UNUserNotificationCenter.current().add(request) { error in
+            print("Error: \(String(describing: error?.localizedDescription))")
+        }
+        
+        let moreInfoAction = UNNotificationAction(identifier: "MoreInfo",
+                                                  title: "More about \(conference.name)",
+            options: [.foreground])
+        let deleteAction = UNNotificationAction(identifier: "Delete",
+                                                title: "Delete",
+                                                options: [.destructive])
+        let category = UNNotificationCategory(identifier: "Actions",
+                                              actions: [moreInfoAction, deleteAction],
+                                              intentIdentifiers: [],
+                                              options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
     }
     
     private func getTitle(for notificationWithType: NotificationType, conference: Conference) -> String {
