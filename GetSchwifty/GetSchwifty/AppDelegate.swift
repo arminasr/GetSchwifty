@@ -13,10 +13,10 @@ import Combine
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private var cancellable: AnyCancellable?
+    private let notificationsService = NotificationsService()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        notificationsService.notificationRequest()
         return true
     }
 

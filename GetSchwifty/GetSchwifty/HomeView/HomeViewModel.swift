@@ -15,6 +15,7 @@ class HomeViewModel: ObservableObject {
     @Published var viewModelDTO = HomeViewModelDTO()
     private let conferenceRepository: RepositoryProtocol
     private var disposables = Set<AnyCancellable>()
+    private let notificationsService = NotificationsService()
     
     init(conferenceRepository: RepositoryProtocol) {
         self.conferenceRepository = conferenceRepository

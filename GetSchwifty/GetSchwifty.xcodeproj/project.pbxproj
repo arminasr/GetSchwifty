@@ -29,6 +29,7 @@
 		42FA8D502376E0FF00813407 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FA8D4F2376E0FF00813407 /* InfoView.swift */; };
 		42FA8D522376E43E00813407 /* SocialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FA8D512376E43E00813407 /* SocialButton.swift */; };
 		C40B14E4235997FE00891E40 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B14E3235997FE00891E40 /* Coordinator.swift */; };
+		C45C9F7E238277F0002D4777 /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C9F7D238277F0002D4777 /* NotificationsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		42FA8D4F2376E0FF00813407 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		42FA8D512376E43E00813407 /* SocialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialButton.swift; sourceTree = "<group>"; };
 		C40B14E3235997FE00891E40 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C45C9F7D238277F0002D4777 /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		4296EC2E233B1A7000F93FB3 /* GetSchwifty */ = {
 			isa = PBXGroup;
 			children = (
+				C45C9F7C238277D6002D4777 /* Services */,
 				42886F89236C23E200D99992 /* GetSchwifty.entitlements */,
 				4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */,
 				C40B14E3235997FE00891E40 /* Coordinator.swift */,
@@ -180,6 +183,14 @@
 				425053E623781E2700E17F20 /* GetSchwiftyTests-Bridging-Header.h */,
 			);
 			path = GetSchwiftyTests;
+			sourceTree = "<group>";
+		};
+		C45C9F7C238277D6002D4777 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C45C9F7D238277F0002D4777 /* NotificationsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 				42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */,
 				42FA8D502376E0FF00813407 /* InfoView.swift in Sources */,
 				422D32DA235CB5000037CAEE /* WebView.swift in Sources */,
+				C45C9F7E238277F0002D4777 /* NotificationsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
