@@ -20,7 +20,7 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ZStack {
+        VStack {
             NavigationView {
                 ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
                     .navigationBarItems(

@@ -11,7 +11,7 @@ import SwiftUI
 struct ConferenceCard: View {
     
     var cardViewModel: ConferenceCardViewModel
-    @State private var modalPresentationDetails: (isPresented: Bool, url: URL?) = (isPresented: false, url: nil)
+    @State private var showDetails = false
     
     var body: some View {
         VStack {
@@ -32,41 +32,17 @@ struct ConferenceCard: View {
                 Text("\(cardViewModel.location)").font(.footnote)
                 Spacer()
             }
-            
-            HStack(alignment: .top, spacing: 44) {
-                ForEach(cardViewModel.actionButtons) { buttonModel in
-                    Button(action: {
-                        guard let url = buttonModel.url else {
-                            return
-                        }
-                        self.modalPresentationDetails.url = url
-                        self.modalPresentationDetails.isPresented.toggle()
-                    }) {
-                        VStack(alignment: .center) {
-                            Group {
-                                Image(systemName: buttonModel.iconName)
-                                    .resizable()
-                                    .frame(width: 22, height: 22)
-                                Text("\(buttonModel.text)")
-                                    .lineLimit(2)
-                                    .multilineTextAlignment(.center)
-                                    .font(.footnote)
-                            }
-                        }
-                    }
-                    .fixedSize()
-                    .disabled(!buttonModel.isActive)
-                }
+            if showDetails {
+                ConferenceCardDetails(actionButtons: cardViewModel.actionButtons).frame(height: 300).transition(.scale).animation(.spring())
             }
-        }
-            
-        .sheet(isPresented: $modalPresentationDetails.isPresented) {
-            ViewsFactory.webView(url: self.modalPresentationDetails.url!)
         }
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [Color(.systemPink).opacity(0.15), Color(.systemBlue).opacity(0.15)]), startPoint: .top, endPoint: .bottom))
         .cornerRadius(20)
         .buttonStyle(BorderlessButtonStyle())
         .accentColor(Color(.systemPink))
+        .onTapGesture {
+            self.showDetails.toggle()
+        }
     }
 }

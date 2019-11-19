@@ -19,6 +19,8 @@
 		427E4AF42344545600732BB2 /* ViewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AF32344545600732BB2 /* ViewsFactory.swift */; };
 		427E4AF723445A3300732BB2 /* ConferencesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */; };
 		42886F882368BD8900D99992 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42886F872368BD8900D99992 /* ActivityIndicator.swift */; };
+		428F63062384722A00DB81EA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428F63052384722A00DB81EA /* MapView.swift */; };
+		428F632A238478AF00DB81EA /* ConferenceCardDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428F6329238478AF00DB81EA /* ConferenceCardDetails.swift */; };
 		4296EC30233B1A7000F93FB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */; };
 		4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */; };
 		4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296EC33233B1A7000F93FB3 /* HomeView.swift */; };
@@ -57,6 +59,8 @@
 		427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesListViewModel.swift; sourceTree = "<group>"; };
 		42886F872368BD8900D99992 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		42886F89236C23E200D99992 /* GetSchwifty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GetSchwifty.entitlements; sourceTree = "<group>"; };
+		428F63052384722A00DB81EA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		428F6329238478AF00DB81EA /* ConferenceCardDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceCardDetails.swift; sourceTree = "<group>"; };
 		4296EC2C233B1A7000F93FB3 /* Get Schwifty!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get Schwifty!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4296EC2F233B1A7000F93FB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4296EC31233B1A7000F93FB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +113,9 @@
 				427E4ADE233F4A4D00732BB2 /* ConferencesList.swift */,
 				427E4AF623445A3300732BB2 /* ConferencesListViewModel.swift */,
 				4243616F233B20E600DC26FA /* ConferenceCard.swift */,
+				428F6329238478AF00DB81EA /* ConferenceCardDetails.swift */,
 				427E4AEE234301E200732BB2 /* ConferenceCardViewModel.swift */,
+				428F63052384722A00DB81EA /* MapView.swift */,
 				42886F872368BD8900D99992 /* ActivityIndicator.swift */,
 			);
 			path = HomeView;
@@ -306,11 +312,13 @@
 				42886F882368BD8900D99992 /* ActivityIndicator.swift in Sources */,
 				427E4AED234300D700732BB2 /* HomeViewModel.swift in Sources */,
 				427E4AF2234303EA00732BB2 /* Formatters.swift in Sources */,
+				428F63062384722A00DB81EA /* MapView.swift in Sources */,
 				4296EC32233B1A7000F93FB3 /* SceneDelegate.swift in Sources */,
 				4296EC34233B1A7000F93FB3 /* HomeView.swift in Sources */,
 				427E4AF42344545600732BB2 /* ViewsFactory.swift in Sources */,
 				427E4AEF234301E200732BB2 /* ConferenceCardViewModel.swift in Sources */,
 				427E4ADF233F4A4D00732BB2 /* ConferencesList.swift in Sources */,
+				428F632A238478AF00DB81EA /* ConferenceCardDetails.swift in Sources */,
 				42FA8D522376E43E00813407 /* SocialButton.swift in Sources */,
 				42DBEE1B23520854003D374D /* Date+Midnight.swift in Sources */,
 				42FA8D502376E0FF00813407 /* InfoView.swift in Sources */,
