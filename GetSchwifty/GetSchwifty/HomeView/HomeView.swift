@@ -11,30 +11,35 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject private var viewModel: HomeViewModel
-    @ObservedObject private var viewModelDTO: HomeViewModel.HomeViewModelDTO
+    @ObservedObject private var conferencesListViewModel: ConferencesListViewModel
     @State private var infoViewPresented: Bool = false
+    @State private var detailsViewPresented: Bool = false
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
-        self.viewModelDTO = viewModel.viewModelDTO
+        self.conferencesListViewModel = viewModel.conferencesListViewModel
+    }
+    
+    private var conferenceCardViewModelForDetailsSelected: Bool {
+        viewModel.conferencesListViewModel.conferenceCardViewModelForDetails != nil
     }
     
     var body: some View {
-        VStack {
+        ZStack {
             NavigationView {
-                ConferencesList(viewModel: viewModel.viewModelDTO.conferencesListViewModel)
+                ConferencesList(viewModel: viewModel.conferencesListViewModel)
                     .navigationBarItems(
                         leading: Button(action: {
                             self.infoViewPresented.toggle()
                         }) {
-                            Image(systemName: viewModel.viewModelDTO.infoIconName)
+                            Image(systemName: viewModel.infoIconName)
                                 .resizable()
                                 .frame(width: 22, height: 22)
                         },
                         trailing: Button(action: {
                             self.viewModel.reload()
                         }) {
-                            Image(systemName: viewModel.viewModelDTO.reloadIconName)
+                            Image(systemName: viewModel.reloadIconName)
                                 .resizable()
                                 .frame(width: 22, height: 22)
                         }
@@ -43,11 +48,33 @@ struct HomeView: View {
                         }
                     )
                     .navigationBarTitle(
-                        Text("\(viewModel.viewModelDTO.navigationBarTitle)")
-                )
+                        Text("\(viewModel.navigationBarTitle)")
+                    )
             }
             .accentColor(Color(.systemPink))
-            ActivityIndicator(isAnimating: $viewModel.viewModelDTO.isLoading, style: .large)
+            .animation(nil)
+            .blur(radius: conferenceCardViewModelForDetailsSelected ? 30 : 0)
+            .animation(.easeOut)
+            
+            if conferenceCardViewModelForDetailsSelected  {
+                Rectangle()
+                    .background(Color.black)
+                    .opacity(0.001)
+                    .edgesIgnoringSafeArea(.all)
+                    .animation(.easeIn)
+                    .onTapGesture {
+                        self.viewModel.conferencesListViewModel.conferenceCardViewModelForDetails = nil
+                    }
+            }
+            
+            if conferenceCardViewModelForDetailsSelected {
+                DetailsView(cardViewModel: viewModel.conferencesListViewModel.conferenceCardViewModelForDetails!)
+                    .onTapGesture {
+                        self.viewModel.conferencesListViewModel.conferenceCardViewModelForDetails = nil
+                    }
+            }
+            
+            ActivityIndicator(isAnimating: $viewModel.isLoading, style: .large)
         }
     }
 }

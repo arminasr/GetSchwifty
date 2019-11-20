@@ -11,7 +11,6 @@ import SwiftUI
 struct ConferenceCard: View {
     
     var cardViewModel: ConferenceCardViewModel
-    @State private var showDetails = false
     
     var body: some View {
         VStack {
@@ -32,17 +31,11 @@ struct ConferenceCard: View {
                 Text("\(cardViewModel.location)").font(.footnote)
                 Spacer()
             }
-            if showDetails {
-                ConferenceCardDetails(viewModel: cardViewModel)
-            }
         }
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [Color(.systemPink).opacity(0.15), Color(.systemBlue).opacity(0.15)]), startPoint: .top, endPoint: .bottom))
         .cornerRadius(20)
         .buttonStyle(BorderlessButtonStyle())
         .accentColor(Color(.systemPink))
-        .onTapGesture {
-            self.showDetails.toggle()
-        }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ConferenceCardDetails: View {
     
@@ -20,6 +21,30 @@ struct ConferenceCardDetails: View {
     
     var body: some View {
         VStack {
+            HStack(alignment: .top) {
+                Text("\(viewModel.conferenceName)")
+                    .font(.title)
+                    .foregroundColor(Color(.systemPink))
+                    .lineLimit(nil)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+            
+            HStack {
+                Text("\(viewModel.conferenceDate)").font(.headline)
+                Spacer()
+            }
+            HStack {
+                Text("\(viewModel.location)").font(.footnote)
+                Spacer()
+            }
+            
+            if viewModel.coordinate != nil {
+                MapView(coordinate: viewModel.coordinate).frame(height: 250).cornerRadius(20)
+            }
+            if viewModel.coordinate == nil {
+                MapView(coordinate: CLLocationCoordinate2D.init()).frame(height: 250).blur(radius: 30).cornerRadius(20)
+            }
             HStack(alignment: .top, spacing: 44) {
                 ForEach(viewModel.actionButtons) { buttonModel in
                     Button(action: {
@@ -44,12 +69,11 @@ struct ConferenceCardDetails: View {
                     .fixedSize()
                     .disabled(!buttonModel.isActive)
                 }
-            }.transition(.scale)
-            if viewModel.coordinate != nil {
-                MapView(coordinate: viewModel.coordinate).frame(height: 250).transition(.opacity)
             }
+            .padding()
+            .animation(.spring())
+            .transition(.scale)
         }
-        .animation(.default)
         .sheet(isPresented: $modalPresentationDetails.isPresented) {
             ViewsFactory.webView(url: self.modalPresentationDetails.url!)
         }

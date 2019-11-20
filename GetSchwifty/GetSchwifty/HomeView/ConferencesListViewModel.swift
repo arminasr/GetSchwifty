@@ -14,6 +14,7 @@ class ConferencesListViewModel: ObservableObject {
     
     @Published var conferencesListSections: [ConferencesListViewModel.Section] = []
     @Published var emptyListMessage = ""
+    @Published var conferenceCardViewModelForDetails: ConferenceCardViewModel?
     
     private let notificationsService = NotificationsService()
     
