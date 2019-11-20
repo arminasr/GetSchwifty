@@ -481,6 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GetSchwifty/GetSchwifty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GetSchwifty/Preview Content\"";
 				DEVELOPMENT_TEAM = P2NV4FHDH6;
 				ENABLE_PREVIEWS = YES;
@@ -503,6 +504,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GetSchwifty/GetSchwifty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"GetSchwifty/Preview Content\"";
 				DEVELOPMENT_TEAM = P2NV4FHDH6;
 				ENABLE_PREVIEWS = YES;
