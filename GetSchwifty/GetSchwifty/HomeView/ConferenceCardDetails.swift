@@ -10,13 +10,18 @@ import SwiftUI
 
 struct ConferenceCardDetails: View {
     
-    let actionButtons: [ConferenceCardViewModel.ActionButtonModel]
+    @ObservedObject var viewModel: ConferenceCardViewModel
     @State private var modalPresentationDetails: (isPresented: Bool, url: URL?) = (isPresented: false, url: nil)
+    
+    init(viewModel: ConferenceCardViewModel) {
+        self.viewModel = viewModel
+        self.viewModel.updateCoordinate()
+    }
     
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 44) {
-                ForEach(actionButtons) { buttonModel in
+                ForEach(viewModel.actionButtons) { buttonModel in
                     Button(action: {
                         guard let url = buttonModel.url else {
                             return
@@ -39,9 +44,12 @@ struct ConferenceCardDetails: View {
                     .fixedSize()
                     .disabled(!buttonModel.isActive)
                 }
+            }.transition(.scale)
+            if viewModel.coordinate != nil {
+                MapView(coordinate: viewModel.coordinate).frame(height: 250).transition(.opacity)
             }
-            MapView().frame(height: 200).cornerRadius(20)
         }
+        .animation(.default)
         .sheet(isPresented: $modalPresentationDetails.isPresented) {
             ViewsFactory.webView(url: self.modalPresentationDetails.url!)
         }

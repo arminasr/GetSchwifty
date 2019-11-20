@@ -8,10 +8,13 @@
 
 import UIKit
 import SwiftConferencesDataKit
+import MapKit
+import Combine
 
-class ConferenceCardViewModel: Identifiable {
+class ConferenceCardViewModel: Identifiable, ObservableObject {
     
     private let conference: Conference
+    @Published var coordinate: CLLocationCoordinate2D?
     
     init(conference: Conference) {
         self.conference = conference
@@ -42,6 +45,15 @@ class ConferenceCardViewModel: Identifiable {
     
     var actionButtons: [ActionButtonModel] {
         return [websiteButtonModel, cfpButtonModel].compactMap{ $0 }
+    }
+    
+    func updateCoordinate() {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = self.conference.location
+        let search = MKLocalSearch(request: request)
+        search.start { response, _ in
+            self.coordinate = response?.mapItems.first?.placemark.coordinate
+        }
     }
     
     private var websiteButtonModel: ActionButtonModel? {

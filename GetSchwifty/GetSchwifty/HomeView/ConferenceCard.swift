@@ -33,7 +33,7 @@ struct ConferenceCard: View {
                 Spacer()
             }
             if showDetails {
-                ConferenceCardDetails(actionButtons: cardViewModel.actionButtons).frame(height: 300).transition(.scale).animation(.spring())
+                ConferenceCardDetails(viewModel: cardViewModel)
             }
         }
         .padding()
