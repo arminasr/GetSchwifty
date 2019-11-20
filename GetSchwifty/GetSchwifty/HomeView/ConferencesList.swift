@@ -28,7 +28,6 @@ struct ConferencesList: View {
                         .padding()) {
                     ForEach(section.cards) { cardViewModel in
                         ConferenceCard(cardViewModel: cardViewModel)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0))
                             .onTapGesture {
                                 self.viewModel.conferenceCardViewModelForDetails = cardViewModel
                             }

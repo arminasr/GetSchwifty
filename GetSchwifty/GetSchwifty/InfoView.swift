@@ -14,18 +14,18 @@ struct InfoView: View {
             Text("Get Schwifty!")
                 .font(.largeTitle)
                 .accentColor(Color(.systemPink))
-            Text("This is an open source iOS application providing a list of conferences (mostly iOS and Swift related). \nAnyone who founds a bug 🐛 or is missing a feature is welcome to submit a PR")
+            Text("This is an open-source iOS application providing a list of conferences (mostly iOS and Swift related). \nAnyone who founds a bug 🐛 or is missing a feature is welcome to submit a PR.")
                 .font(.caption)
-            SocialButton(title: "GetSchwifty",
+            SocialButton(title: "GetSchwifty!",
                          type: .github,
                          url: URL(string: "https://github.com/arminasr/GetSchwifty")!)
-            Text("Contact me with any suggestions")
+            Text("Contact me with any suggestions.")
             .font(.caption)
             SocialButton(title: "@arminas_r",
                          type: .twitter,
                          url: URL(string: "https://twitter.com/arminas_r")!,
                          appURL: URL(string: "twitter://user?screen_name=arminas_r")!)
-            Text("GetSchwifty is inspired by CocoaConferences project. It contains the data used by GetSchwifty application.")
+            Text("GetSchwifty is inspired by the CocoaConferences project. It contains the data used by the GetSchwifty application.")
                 .font(.caption)
                 .padding(.top)
             SocialButton(title: "CocoaConferences",

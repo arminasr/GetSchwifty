@@ -34,7 +34,7 @@ struct ConferenceCard: View {
         }
         .padding()
         .background(LinearGradient(gradient: Gradient(colors: [Color(.systemPink).opacity(0.15), Color(.systemBlue).opacity(0.15)]), startPoint: .top, endPoint: .bottom))
-        .cornerRadius(20)
+        .cornerRadius(15)
         .buttonStyle(BorderlessButtonStyle())
         .accentColor(Color(.systemPink))
     }
