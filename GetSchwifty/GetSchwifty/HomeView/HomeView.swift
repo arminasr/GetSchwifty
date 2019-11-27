@@ -12,7 +12,6 @@ struct HomeView: View {
     
     @ObservedObject private var viewModel: HomeViewModel
     @ObservedObject private var conferencesListViewModel: ConferencesListViewModel
-    @State private var infoViewPresented: Bool = false
     @State private var detailsViewPresented: Bool = false
     
     init(viewModel: HomeViewModel) {
@@ -29,22 +28,12 @@ struct HomeView: View {
             NavigationView {
                 ConferencesList(viewModel: viewModel.conferencesListViewModel)
                     .navigationBarItems(
-                        leading: Button(action: {
-                            self.infoViewPresented.toggle()
-                        }) {
-                            Image(systemName: viewModel.infoIconName)
-                                .resizable()
-                                .frame(width: 22, height: 22)
-                        },
                         trailing: Button(action: {
                             self.viewModel.reload()
                         }) {
                             Image(systemName: viewModel.reloadIconName)
                                 .resizable()
                                 .frame(width: 22, height: 22)
-                        }
-                        .sheet(isPresented: $infoViewPresented) {
-                            ViewsFactory.infoView()
                         }
                     )
                     .navigationBarTitle(
